@@ -7,9 +7,10 @@ This project enables game interaction between [Logitech G910](http://gaming.logi
 
 # How to Install
 1. First of all, make sure that "Allow games to control illumination" is enabled in Logitech Gameing Software.
-2. Extract the archive anywhere on your computer.
-3. Copy the "gamestate_integration_logitech.cfg" into "./steamapps/common/Counter-Strike Global Offensive/csgo/cfg/" folder
-4. Run "Logitech-CSGO.exe"
+2. Download the latest release from [here](https://github.com/antonpup/Logitech-CSGO/releases/latest).
+3. Extract the archive anywhere on your computer.
+4. Copy the "gamestate_integration_logitech.cfg" into "./steamapps/common/Counter-Strike Global Offensive/csgo/cfg/" folder
+5. Run "Logitech-CSGO.exe"
 
 ## Included effects
 * Team-based background color
