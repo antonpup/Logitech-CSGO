@@ -1,8 +1,8 @@
 # Logitech - CSGO game integration
-This project enables game interaction between [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) and [Counter-Strike: Global Offensive](http://store.steampowered.com/app/730/) via [Game Integration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration). Please keep in mind that this is still in development, there may be bugs and there will be new features added.
+This project enables game interaction between Logitech RGB keyboards, such as [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) or [Logitech G410](http://gaming.logitech.com/en-us/product/rgb-tenkeyless-gaming-keyboard-g410), and [Counter-Strike: Global Offensive](http://store.steampowered.com/app/730/) via [Game Integration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration). Please keep in mind that this is still in development, there may be bugs and there will be new features added.
 
 # Requirements
-* [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) keyboard
+* [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) keyboard or [Logitech G410](http://gaming.logitech.com/en-us/product/rgb-tenkeyless-gaming-keyboard-g410) keyboard
 * [Counter-Strike: Global Offensive](http://store.steampowered.com/app/730/)
 
 # How to Install
@@ -32,9 +32,9 @@ This project enables game interaction between [Logitech G910](http://gaming.logi
 
    A: At the moment, you cannot. But I do plan on allowing users to customize which keys are being lit per effect.
 
-* Q: Why is Logitech G910 only supported?
+* Q: Why are Logitech G910 and G410 only supported?
 
-   A: Logitech G910 is the only keyboard from Logitech that allows for per-key lighting effects.
+   A: Logitech G910 and G410 are the only keyboards from Logitech that allow for per-key RGB lighting effects.
    
 * Q: I have found a bug. How do I report it?
 
