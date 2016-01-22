@@ -1,0 +1,462 @@
+﻿<Window
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ledsdk="clr-namespace:LedCSharp"
+             xmlns:local="clr-namespace:Logitech_CSGO" xmlns:Nodes="clr-namespace:CSGSI.Nodes;assembly=CSGSI" x:Class="Logitech_CSGO.ConfigUI"
+             mc:Ignorable="d" Height="445" Width="860" MinWidth="860" MinHeight="445" MaxHeight="445" MaxWidth="860" ResizeMode="CanMinimize" Title="Logitech - CS:GO Integration" Loaded="Window_Loaded">
+    <Grid Background="Black">
+        <Grid x:Name="keyboard_grid" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="823">
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="ESC" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ESC}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="62,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F1" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F1}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="99,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F2" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F2}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="136,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F3" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F3}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="173,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F4" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F4}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="237,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F5" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F5}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="274,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F6" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F6}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="311,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F7" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F7}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="348,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F8" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F8}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="407,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F9" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F9}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="444,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F10" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F10}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="481,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F11" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F11}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="518,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F12" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F12}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="562,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="PRINT" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.PRINT_SCREEN}" IsHitTestVisible="True" FontSize="9" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="599,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="SCRL&#xA;LOCK" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.SCROLL_LOCK}" IsHitTestVisible="True" FontWeight="Bold" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="636,0,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.PAUSE_BREAK}" IsHitTestVisible="True" Text="PAUSE" FontWeight="Bold" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="~" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.TILDE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="37,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="1" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ONE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="74,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="2" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.TWO}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="111,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="3" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.THREE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="148,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="4" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.FOUR}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="185,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="5" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.FIVE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="222,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="6" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.SIX}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="259,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="7" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.SEVEN}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="296,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="8" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.EIGHT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="333,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="9" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NINE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="370,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="0" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ZERO}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="407,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="-" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.MINUS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="444,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="=" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.EQUALS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="481,37,0,0" VerticalAlignment="Top" Width="69" CornerRadius="5">
+                <TextBlock Foreground="White" Text="BACKSPACE" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.BACKSPACE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="562,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="INS" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.INSERT}" IsHitTestVisible="True" FontWeight="Bold" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="599,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="HOME" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.HOME}" IsHitTestVisible="True" FontSize="9" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="636,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="PAGE&#x0a;UP" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.PAGE_UP}" IsHitTestVisible="True" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="680,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="NUM&#x0a;LOCK" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_LOCK}" IsHitTestVisible="True" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="717,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="/" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_SLASH}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="754,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="*" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_ASTERISK}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="791,37,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="-" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_MINUS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0,74,0,0" VerticalAlignment="Top" CornerRadius="5" Width="50">
+                <TextBlock Foreground="White" Text="TAB" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.TAB}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="55,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="Q" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.Q}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="92,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="W" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.W}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="129,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="E" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.E}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="166,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="R" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.R}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="203,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="T" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.T}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="240,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="Y" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.Y}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="277,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="U" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.U}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="314,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="I" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.I}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="351,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="O" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.O}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="388,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="P" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.P}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="425,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="{}{" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.OPEN_BRACKET}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="462,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="}" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.CLOSE_BRACKET}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="499,74,0,0" VerticalAlignment="Top" Width="51" CornerRadius="5">
+                <TextBlock Foreground="White" Text="\" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.BACKSLASH}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="562,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="DEL" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.KEYBOARD_DELETE}" IsHitTestVisible="True" FontWeight="Bold" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="599,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="END" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.END}" IsHitTestVisible="True" FontSize="9" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="636,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="PAGE&#x0a;DOWN" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.PAGE_DOWN}" IsHitTestVisible="True" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="680,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="7" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_SEVEN}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="717,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="8" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_EIGHT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="754,74,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="9" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_NINE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="791,74,0,0" VerticalAlignment="Top" CornerRadius="5" Height="69">
+                <TextBlock Foreground="White" Text="+" Width="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_PLUS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0,111,0,0" VerticalAlignment="Top" CornerRadius="5" Width="60">
+                <TextBlock Foreground="White" Text="CAPS&#x0a;LOCK" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.CAPS_LOCK}" IsHitTestVisible="True" FontSize="10"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="65,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="A" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.A}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="102,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="S" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.S}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="139,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="D" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.D}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="176,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="F" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.F}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="213,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="G" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.G}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="250,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="H" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.H}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="287,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="J" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.J}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="324,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="K" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.K}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="361,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="L" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.L}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="398,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text=":" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.SEMICOLON}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="435,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="&quot;" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.APOSTROPHE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="472,111,0,0" VerticalAlignment="Top" Width="78" CornerRadius="5">
+                <TextBlock Foreground="White" Text="ENTER" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ENTER}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="680,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="4" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_FOUR}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="717,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="5" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_FIVE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="754,111,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="6" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_SIX}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top" CornerRadius="5" Width="78">
+                <TextBlock Foreground="White" Text="SHIFT" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.LEFT_SHIFT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="83,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="Z" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.Z}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="120,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="X" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.X}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="157,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="C" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.C}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="194,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="V" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.V}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="231,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="B" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.B}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="268,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="N" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.N}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="305,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="M" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.M}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="342,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="&lt;" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.COMMA}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="379,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="&gt;" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.PERIOD}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="416,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="?" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.FORWARD_SLASH}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="453,148,0,0" VerticalAlignment="Top" Width="97" CornerRadius="5">
+                <TextBlock Foreground="White" Text="SHIFT" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.RIGHT_SHIFT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="599,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="UP" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ARROW_UP}" IsHitTestVisible="True" FontSize="9" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="680,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="1" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_ONE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="717,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="2" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_TWO}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="754,148,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="3" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_THREE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="791,148,0,0" VerticalAlignment="Top" CornerRadius="5" Height="69">
+                <TextBlock Foreground="White" Text="ENTER" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_ENTER}" IsHitTestVisible="True" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="0,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="50">
+                <TextBlock Foreground="White" Text="CTRL" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.LEFT_CONTROL}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="55,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="39">
+                <TextBlock Foreground="White" Text="WIN" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.LEFT_WINDOWS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="99,185,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="ALT" Width="42" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.LEFT_ALT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="148,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="208">
+                <TextBlock Foreground="White" Text="SPACE" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.SPACE}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="361,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="41">
+                <TextBlock Foreground="White" Text="ALT" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.RIGHT_ALT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="407,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="41">
+                <TextBlock Foreground="White" Text="WIN" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.RIGHT_WINDOWS}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="453,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="41">
+                <TextBlock Foreground="White" Text="APP" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.APPLICATION_SELECT}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="499,185,0,0" VerticalAlignment="Top" Width="51" CornerRadius="5" Background="Black">
+                <TextBlock Foreground="White" Text="CTRL" VerticalAlignment="Top" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.RIGHT_CONTROL}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="562,185,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="LEFT" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ARROW_LEFT}" IsHitTestVisible="True" FontWeight="Bold" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="599,185,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="DOWN" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ARROW_DOWN}" IsHitTestVisible="True" FontSize="9" VerticalAlignment="Top" FontWeight="Bold"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="636,185,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="RIGHT" VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.ARROW_RIGHT}" IsHitTestVisible="True" FontSize="9"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="680,185,0,0" VerticalAlignment="Top" CornerRadius="5" Width="69">
+                <TextBlock Foreground="White" Text="0" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_ZERO}" IsHitTestVisible="True"/>
+            </Border>
+            <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" Margin="754,185,0,0" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="." VerticalAlignment="Top" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static ledsdk:keyboardBitmapKeys.NUM_PERIOD}" IsHitTestVisible="True"/>
+            </Border>
+        </Grid>
+        <Grid Margin="10,232,7,10">
+            <TabControl>
+                <TabItem Header="Preview">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Team:" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="preview_team" HorizontalAlignment="Left" Margin="55,33,0,0" VerticalAlignment="Top" Width="120" IsSynchronizedWithCurrentItem="True" SelectionChanged="preview_team_SelectionChanged" SelectedIndex="0">
+                            <Nodes:PlayerTeam>Undefined</Nodes:PlayerTeam>
+                            <Nodes:PlayerTeam>T</Nodes:PlayerTeam>
+                            <Nodes:PlayerTeam>CT</Nodes:PlayerTeam>
+                        </ComboBox>
+                        <Label Content="Health:" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+                        <Slider x:Name="preview_health_slider" HorizontalAlignment="Left" Margin="62,65,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_health_slider_ValueChanged"/>
+                        <Label x:Name="preview_health_amount" Content="0%" HorizontalAlignment="Left" Margin="181,61,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Ammo:" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
+                        <Slider x:Name="preview_ammo_slider" HorizontalAlignment="Left" Margin="62,96,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_ammo_slider_ValueChanged"/>
+                        <Label x:Name="preview_ammo_amount" Content="0%" HorizontalAlignment="Left" Margin="181,92,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="preview_bomb_start" Content="Start bomb event" HorizontalAlignment="Left" Margin="212,13,0,0" VerticalAlignment="Top" Click="preview_bomb_start_Click"/>
+                        <Button x:Name="preview_bomb_defused" Content="Bomb has been defused" HorizontalAlignment="Left" Margin="212,38,0,0" VerticalAlignment="Top" IsEnabled="False" Click="preview_bomb_defused_Click"/>
+                        <CheckBox x:Name="preview_enabled" Content="Enable keyboard preview" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="preview_enabled_Checked" Unchecked="preview_enabled_Checked"/>
+                        <Label Content="Flash amount:" HorizontalAlignment="Left" Margin="212,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.766,2.115"/>
+                        <Slider x:Name="preview_flash_slider" HorizontalAlignment="Left" Margin="301,65,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_flash_slider_ValueChanged"/>
+                        <Label x:Name="preview_flash_amount" Content="0%" HorizontalAlignment="Left" Margin="420,61,0,0" VerticalAlignment="Top"/>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Background">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="background_enabled" Content="Enable team-based background color" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="background_enabled_Checked" Unchecked="background_enabled_Checked"/>
+                        <xctk:ColorPicker x:Name="t_colorpicker" Margin="92,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="t_colorpicker_SelectedColorChanged" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Terrorist Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="ct_colorpicker" Margin="140,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="ct_colorpicker_SelectedColorChanged" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Counter-Terrorist Color:" VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Player Health">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="health_enabled" Content="Enable health effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Checked="health_enabled_Checked" Unchecked="health_enabled_Checked"/>
+                        <xctk:ColorPicker x:Name="health_healthy_colorpicker" Margin="90,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="health_healthy_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Healthy Color:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+                        <xctk:ColorPicker x:Name="health_hurt_colorpicker" Margin="73,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180" SelectedColorChanged="health_hurt_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Hurt Color:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+                        <ComboBox x:Name="health_effect_type" HorizontalAlignment="Left" Margin="77,88,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="health_effect_type_SelectionChanged">
+                            <ComboBox.DataContext>
+                                <local:PercentEffectType>AllAtOnce</local:PercentEffectType>
+                            </ComboBox.DataContext>
+                        </ComboBox>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Effect Type:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <ListBox x:Name="health_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <Button x:Name="sequence_up_health" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_health_Click"/>
+                        <Button x:Name="sequence_down_health" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_health_Click"/>
+                        <Button x:Name="sequence_remove_health" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_health_Click"/>
+                        <Button x:Name="sequence_record_health" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_health_Click"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Player Ammo">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="ammo_enabled" Content="Enable ammo effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="ammo_enabled_Checked" Unchecked="ammo_enabled_Checked"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Has Ammo Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="ammo_hasammo_colorpicker" Margin="108,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145" SelectedColorChanged="ammo_hasammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="No Ammo Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="ammo_noammo_colorpicker" Margin="104,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" SelectedColorChanged="ammo_noammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Effect Type:" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="ammo_effect_type" HorizontalAlignment="Left" Margin="77,88,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="ammo_effect_type_SelectionChanged">
+                            <ComboBox.DataContext>
+                                <local:PercentEffectType>AllAtOnce</local:PercentEffectType>
+                            </ComboBox.DataContext>
+                        </ComboBox>
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <ListBox x:Name="ammo_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <Button x:Name="sequence_record_ammo" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_ammo_Click"/>
+                        <Button x:Name="sequence_remove_ammo" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_ammo_Click"/>
+                        <Button x:Name="sequence_up_ammo" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_ammo_Click"/>
+                        <Button x:Name="sequence_down_ammo" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_ammo_Click"/>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Bomb Event">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="bomb_enabled" Content="Enable bomb effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="bomb_enabled_Checked" Unchecked="bomb_enabled_Checked"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Bomb Flash Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="bomb_flash_color_colorpicker" Margin="111,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="142" SelectedColorChanged="bomb_flash_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Bomb Primed Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="bomb_primed_color_colorpicker" Margin="122,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" SelectedColorChanged="bomb_primed_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <ListBox x:Name="bomb_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <Button x:Name="sequence_record_bomb" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_bomb_Click"/>
+                        <Button x:Name="sequence_remove_bomb" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_bomb_Click"/>
+                        <Button x:Name="sequence_up_bomb" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_bomb_Click"/>
+                        <Button x:Name="sequence_down_bomb" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_bomb_Click"/>
+                        <CheckBox x:Name="bomb_display_winner" Content="Display winning team color" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Checked="bomb_display_winner_Checked" Unchecked="bomb_display_winner_Checked"/>
+                        <CheckBox x:Name="bomb_gradual_effect" Content="Use gradual lighting" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Checked="bomb_gradual_effect_Checked" Unchecked="bomb_gradual_effect_Checked"/>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Static Keys">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="statickeys_enabled" Content="Enable static keys" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="statickeys_enabled_Checked" Checked="statickeys_enabled_Checked"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Static Keys Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="statickeys_color_colorpicker" Margin="105,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="statickeys_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <ListBox x:Name="statickeys_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <Button x:Name="sequence_record_statickeys" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_statickeys_Click"/>
+                        <Button x:Name="sequence_remove_statickeys" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_statickeys_Click"/>
+                        <Button x:Name="sequence_up_statickeys" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_statickeys_Click"/>
+                        <Button x:Name="sequence_down_statickeys" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_statickeys_Click"/>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Flashbang Event">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="flashbang_enabled" Content="Enable flashbang effect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="flashbang_enabled_Checked" Checked="flashbang_enabled_Checked"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Flashbang Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="flashbang_color_colorpicker" Margin="103,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="flashbang_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                    </Grid>
+                </TabItem>
+                <TabItem Header="About">
+                    <Grid Background="#FFE5E5E5">
+                        <Label Content="Logitech - CS:GO Integration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                        <Label Content="by Antonpup" HorizontalAlignment="Left" Margin="175,39,0,0" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271">
+                            Source code for this project is availiable on 
+                            <Hyperlink NavigateUri="https://github.com/antonpup/Logitech-CSGO" RequestNavigate="Hyperlink_RequestNavigate">
+                                GitHub
+                            </Hyperlink>
+                            I can contacted via
+                            <Hyperlink NavigateUri="http://steamcommunity.com/id/pupant/" RequestNavigate="Hyperlink_RequestNavigate">
+                                Steam
+                            </Hyperlink>
+                        </TextBlock>
+                        <Label Content="v0.2.0" HorizontalAlignment="Left" Margin="214,13,0,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+    </Grid>
+</Window>

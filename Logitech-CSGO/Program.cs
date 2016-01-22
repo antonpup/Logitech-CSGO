@@ -1,6 +1,7 @@
 ﻿using CSGSI;
 using CSGSI.Nodes;
 using System;
+using System.Windows;
 
 namespace Logitech_CSGO
 {
@@ -8,14 +9,23 @@ namespace Logitech_CSGO
 
         public static GameEventHandler geh = new GameEventHandler();
         public static GameStateListener gsl;
+        public static Configuration Configuration { get; set; }
     }
     
     class Program
     {
+        public static Application WinApp { get; private set; }
+        public static Window MainWindow = new ConfigUI();
+
+        
         static bool IsPlanted = false;
 
+        [STAThread]
         static void Main(string[] args)
         {
+            //Load config
+            Global.Configuration = ConfigManager.Load("Config");
+
             if (!Global.geh.Init())
                 return;
 
@@ -24,10 +34,23 @@ namespace Logitech_CSGO
 
             if (!Global.gsl.Start())
             {
+                System.Windows.MessageBox.Show("GameStateListener could not start. Try running this program as Administrator.\r\nExiting.");
                 Environment.Exit(0);
             }
             Console.WriteLine("Listening for game integration calls...");
             Console.WriteLine("You can close this window to quit the program.");
+
+            WinApp = new Application();
+            WinApp.ShutdownMode = ShutdownMode.OnMainWindowClose;
+            WinApp.MainWindow = MainWindow;
+            WinApp.Run(MainWindow); // note: blocking call
+
+            ConfigManager.Save("Config", Global.Configuration);
+
+            Global.geh.Destroy();
+            Global.gsl.Stop();
+
+            Environment.Exit(0);
         }
 
         static void OnNewGameState(GameState gs)

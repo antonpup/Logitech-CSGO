@@ -10,7 +10,7 @@ This project enables game interaction between Logitech RGB keyboards, such as [L
 2. Download the latest release from [here](https://github.com/antonpup/Logitech-CSGO/releases/latest).
 3. Extract the archive anywhere on your computer.
 4. Copy the "gamestate_integration_logitech.cfg" into "./steamapps/common/Counter-Strike Global Offensive/csgo/cfg/" folder
-5. Run "Logitech-CSGO.exe"
+5. Run "Logitech-CSGO.exe" (Run as admin if you have any issues.)
 
 ## Included effects
 * Team-based background color
@@ -21,7 +21,7 @@ This project enables game interaction between Logitech RGB keyboards, such as [L
 * Persistent color keys
 
 ## Video demonstration
-[![Demo 1](http://img.youtube.com/vi/i-QCRJIRnDY/0.jpg)](http://www.youtube.com/watch?v=i-QCRJIRnDY)
+[![Demo 1](http://img.youtube.com/vi/-PumqhB7COU/0.jpg)](http://www.youtube.com/watch?v=-PumqhB7COU)
 
 # F.A.Q.
 * Q: Can this give me a VACation?
