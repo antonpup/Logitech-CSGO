@@ -4,6 +4,8 @@ This project enables game interaction between Logitech RGB keyboards, such as [L
 # Requirements
 * [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) keyboard or [Logitech G410](http://gaming.logitech.com/en-us/product/rgb-tenkeyless-gaming-keyboard-g410) keyboard
 * [Counter-Strike: Global Offensive](http://store.steampowered.com/app/730/)
+* Installed [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
+* Installed [Microsoft .NET Framework 4.5](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
 # How to Install
 1. First of all, make sure that "Allow games to control illumination" is enabled in Logitech Gameing Software.
