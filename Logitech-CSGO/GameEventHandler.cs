@@ -29,6 +29,7 @@ namespace Logitech_CSGO
 
         //Keyboard stuff
         private byte[] bitmap = new byte[LogitechGSDK.LOGI_LED_BITMAP_SIZE];
+        private Color peripheral_Color = Color.Black;
         private bool preview_mode = false;
 
         //Game Integration stuff
@@ -39,6 +40,7 @@ namespace Logitech_CSGO
         int clip_max = 100;
         BombState bombstate = BombState.Undefined;
         int flashamount = 0;
+        PlayerActivity current_activity = PlayerActivity.Undefined;
 
         ~GameEventHandler()
         {
@@ -56,7 +58,7 @@ namespace Logitech_CSGO
                     return false;
                 }
 
-                LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB); 
+                LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB | LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
                 LogitechGSDK.LogiLedSaveCurrentLighting();
 
                 SetAllKeys(Color.White);
@@ -82,10 +84,13 @@ namespace Logitech_CSGO
         {
             if (isInitialized)
             {
+                LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB | LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
+
                 LogitechGSDK.LogiLedRestoreLighting();
                 LogitechGSDK.LogiLedShutdown();
 
                 update_timer.Stop();
+                bombtimer.Stop();
             }
         }
 
@@ -121,9 +126,21 @@ namespace Logitech_CSGO
             else
             {
                 if (keyboard_updated)
+                {
+                    LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB | LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
                     LogitechGSDK.LogiLedRestoreLighting();
+                }
             }
            
+        }
+
+        private Color BlendColors(Color background, Color foreground, double percent)
+        {
+            byte r = (byte)Math.Min((Int32)foreground.R * percent + (Int32)background.R * (1.0 - percent), 255);
+            byte g = (byte)Math.Min((Int32)foreground.G * percent + (Int32)background.G * (1.0 - percent), 255);
+            byte b = (byte)Math.Min((Int32)foreground.B * percent + (Int32)background.B * (1.0 - percent), 255);
+
+            return Color.FromArgb(r, g, b);
         }
 
         private void SetAllKeys(Color color)
@@ -138,11 +155,7 @@ namespace Logitech_CSGO
             {
                 Color keycolor = GetOneKey(key);
 
-                byte r = (byte)Math.Min((Int32)color.R * percent + (Int32)keycolor.R * (1.0 - percent), 255);
-                byte g = (byte)Math.Min((Int32)color.G * percent + (Int32)keycolor.G * (1.0 - percent), 255);
-                byte b = (byte)Math.Min((Int32)color.B * percent + (Int32)keycolor.B * (1.0 - percent), 255);
-
-                SetOneKey(key, Color.FromArgb(r, g, b));
+                SetOneKey(key, BlendColors(keycolor, color, percent));
             }
         }
 
@@ -160,7 +173,17 @@ namespace Logitech_CSGO
             bitmap[(int)key + 2] = color.R;
             bitmap[(int)key + 3] = (byte)255;
         }
-        
+
+        private Color GetPeripheralColor()
+        {
+            return this.peripheral_Color;
+        }
+
+        private void SetPeripheralColor(Color color)
+        {
+            this.peripheral_Color = color;
+        }
+
         public void SetPreview(bool preview)
         {
             this.preview_mode = preview;
@@ -196,6 +219,11 @@ namespace Logitech_CSGO
             this.flashamount = flash;
         }
 
+        public void SetPlayerActivity(PlayerActivity activity)
+        {
+            this.current_activity = activity;
+        }
+
         public Dictionary<keyboardBitmapKeys, Color> GetKeyboardLights()
         {
             Dictionary<keyboardBitmapKeys, Color> keycolors = new Dictionary<keyboardBitmapKeys, Color>();
@@ -216,9 +244,23 @@ namespace Logitech_CSGO
             if (Global.Configuration.bg_team_enabled)
             {
                 if (this.current_team == PlayerTeam.T)
+                {
                     SetAllKeys(Global.Configuration.t_color);
+                    if (Global.Configuration.bg_peripheral_use)
+                        SetPeripheralColor(Global.Configuration.t_color);
+                }
+                else if (this.current_team == PlayerTeam.CT)
+                {
+                    SetAllKeys(Global.Configuration.ct_color);
+                    if (Global.Configuration.bg_peripheral_use)
+                        SetPeripheralColor(Global.Configuration.ct_color);
+                }
                 else
-                    SetAllKeys(Global.Configuration.ct_color); //Acts as CT team and ambient background
+                {
+                    SetAllKeys(Global.Configuration.ambient_color);
+                    if (Global.Configuration.bg_peripheral_use)
+                        SetPeripheralColor(Global.Configuration.ambient_color);
+                }
             }
             else
             {
@@ -297,17 +339,34 @@ namespace Logitech_CSGO
                         foreach (keyboardBitmapKeys key in _bombkeys)
                         {
                             if (isCritical)
-                                SetOneKey(key, Color.FromArgb(
+                            {
+                                Color bombcolor_critical = Color.FromArgb(
                                     (Int32)((Int32)Global.Configuration.bomb_primed_color.R * Math.Min(bombflashamount, 1.0)),
                                     (Int32)((Int32)Global.Configuration.bomb_primed_color.G * Math.Min(bombflashamount, 1.0)),
                                     (Int32)((Int32)Global.Configuration.bomb_primed_color.B * Math.Min(bombflashamount, 1.0))
-                                    ));
+                                    );
+
+                                SetOneKey(key, bombcolor_critical);
+
+                                if (Global.Configuration.bomb_peripheral_use)
+                                {
+                                    SetPeripheralColor(bombcolor_critical);
+                                }
+                            }
                             else
-                                SetOneKey(key, Color.FromArgb(
+                            {
+                                Color bombcolor = Color.FromArgb(
                                     (Int32)((Int32)Global.Configuration.bomb_flash_color.R * Math.Min(bombflashamount, 1.0)),
                                     (Int32)((Int32)Global.Configuration.bomb_flash_color.G * Math.Min(bombflashamount, 1.0)),
                                     (Int32)((Int32)Global.Configuration.bomb_flash_color.B * Math.Min(bombflashamount, 1.0))
-                                    ));
+                                    );
+
+                                SetOneKey(key, bombcolor);
+                                if (Global.Configuration.bomb_peripheral_use)
+                                {
+                                    SetPeripheralColor(bombcolor);
+                                }
+                            }
                         }
                     }
                     else if (this.bombstate == BombState.Defused)
@@ -317,6 +376,9 @@ namespace Logitech_CSGO
                         {
                             foreach (keyboardBitmapKeys key in _bombkeys)
                                 SetOneKey(key, Global.Configuration.ct_color);
+
+                            if (Global.Configuration.bomb_peripheral_use)
+                                SetPeripheralColor(Global.Configuration.ct_color);
                         }
                     }
                     else if (this.bombstate == BombState.Exploded)
@@ -326,6 +388,8 @@ namespace Logitech_CSGO
                         {
                             foreach (keyboardBitmapKeys key in _bombkeys)
                                 SetOneKey(key, Global.Configuration.t_color);
+                            if (Global.Configuration.bomb_peripheral_use)
+                                SetPeripheralColor(Global.Configuration.t_color);
                         }
                     }
                     else
@@ -348,9 +412,22 @@ namespace Logitech_CSGO
             {
                 double flash_percent = (double)this.flashamount / 255.0;
                 SetAllKeysEffect(Global.Configuration.flash_color, flash_percent);
+
+                if (Global.Configuration.flashbang_peripheral_use)
+                    SetPeripheralColor(BlendColors(GetPeripheralColor(), Global.Configuration.flash_color, flash_percent));
+            }
+
+            //Update Typing Keys
+            if (Global.Configuration.typing_enabled && current_activity == PlayerActivity.TextInput)
+            {
+                keyboardBitmapKeys[] _typingkeys = Global.Configuration.typingKeys.ToArray();
+                foreach (keyboardBitmapKeys key in _typingkeys)
+                    SetOneKey(key, Global.Configuration.typing_color);
             }
 
             SendColorsToKeyboard();
+
+            SendColorToPeripheral();
 
             stopwatch.Stop();
             //Console.WriteLine("Execution time: " + stopwatch.ElapsedMilliseconds);
@@ -358,8 +435,23 @@ namespace Logitech_CSGO
 
         private void SendColorsToKeyboard()
         {
+            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
+
             LogitechGSDK.LogiLedSetLightingFromBitmap(bitmap);
             keyboard_updated = true;
+        }
+
+        private void SendColorToPeripheral()
+        {
+            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
+
+            if (!Global.Configuration.bg_peripheral_use)
+            {
+                LogitechGSDK.LogiLedRestoreLighting();
+                return;
+            }
+
+            LogitechGSDK.LogiLedSetLighting( (int)this.peripheral_Color.R/255,(int)this.peripheral_Color.G/255, (int)this.peripheral_Color.B/255 );
         }
 
         private void PercentEffect(Color foregroundColor, Color backgroundColor, keyboardBitmapKeys[] keys, double value, double total, PercentEffectType effectType = PercentEffectType.Progressive)

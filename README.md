@@ -14,13 +14,19 @@ This project enables game interaction between Logitech RGB keyboards, such as [L
 4. Copy the "gamestate_integration_logitech.cfg" into "./steamapps/common/Counter-Strike Global Offensive/csgo/cfg/" folder
 5. Run "Logitech-CSGO.exe" (Run as admin if you have any issues.)
 
+## Run this program in the background at windows start
+1. Go to the Startup folder. (For Windows 10, press Windows Key + R and enter "shell:startup")
+2. Make a shortcut to the exe in that folder.
+3. Edit the shortcut by right clicking it, going into properties, and add " -silent" at the end of "Target". It should look something like this: "...\Logitech-CSGO\Logitech-CSGO.exe -silent". Then press apply, and next time your windows will automatically start the program.
+
 ## Included effects
 * Team-based background color
 * Health indicator
 * Ammo indicator
 * Bomb animation
 * Flashbang effect
-* Persistent color keys
+* Static color keys
+* Typing color keys (For lighting up the keyboard when you are typing in chat or console)
 
 ## Video demonstration
 [![Demo 1](http://img.youtube.com/vi/-PumqhB7COU/0.jpg)](http://www.youtube.com/watch?v=-PumqhB7COU)

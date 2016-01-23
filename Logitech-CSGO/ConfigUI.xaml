@@ -6,7 +6,8 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:ledsdk="clr-namespace:LedCSharp"
              xmlns:local="clr-namespace:Logitech_CSGO" xmlns:Nodes="clr-namespace:CSGSI.Nodes;assembly=CSGSI" x:Class="Logitech_CSGO.ConfigUI"
-             mc:Ignorable="d" Height="445" Width="860" MinWidth="860" MinHeight="445" MaxHeight="445" MaxWidth="860" ResizeMode="CanMinimize" Title="Logitech - CS:GO Integration" Loaded="Window_Loaded">
+             xmlns:tb="http://www.hardcodet.net/taskbar"
+             mc:Ignorable="d" Height="445" Width="860" MinWidth="860" MinHeight="445" MaxHeight="445" MaxWidth="860" ResizeMode="CanMinimize" Title="Logitech - CS:GO Integration" Loaded="Window_Loaded" Initialized="Window_Initialized" Closing="Window_Closing">
     <Grid Background="Black">
         <Grid x:Name="keyboard_grid" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="823">
             <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="5">
@@ -338,27 +339,31 @@
                         <Label Content="Ammo:" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
                         <Slider x:Name="preview_ammo_slider" HorizontalAlignment="Left" Margin="62,96,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_ammo_slider_ValueChanged"/>
                         <Label x:Name="preview_ammo_amount" Content="0%" HorizontalAlignment="Left" Margin="181,92,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="preview_bomb_start" Content="Start bomb event" HorizontalAlignment="Left" Margin="212,13,0,0" VerticalAlignment="Top" Click="preview_bomb_start_Click"/>
-                        <Button x:Name="preview_bomb_defused" Content="Bomb has been defused" HorizontalAlignment="Left" Margin="212,38,0,0" VerticalAlignment="Top" IsEnabled="False" Click="preview_bomb_defused_Click"/>
+                        <Button x:Name="preview_bomb_start" Content="Start bomb event" HorizontalAlignment="Left" Margin="225,13,0,0" VerticalAlignment="Top" Click="preview_bomb_start_Click"/>
+                        <Button x:Name="preview_bomb_defused" Content="Bomb has been defused" HorizontalAlignment="Left" Margin="225,38,0,0" VerticalAlignment="Top" IsEnabled="False" Click="preview_bomb_defused_Click"/>
                         <CheckBox x:Name="preview_enabled" Content="Enable keyboard preview" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="preview_enabled_Checked" Unchecked="preview_enabled_Checked"/>
-                        <Label Content="Flash amount:" HorizontalAlignment="Left" Margin="212,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.766,2.115"/>
-                        <Slider x:Name="preview_flash_slider" HorizontalAlignment="Left" Margin="301,65,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_flash_slider_ValueChanged"/>
-                        <Label x:Name="preview_flash_amount" Content="0%" HorizontalAlignment="Left" Margin="420,61,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Flash amount:" HorizontalAlignment="Left" Margin="225,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.766,2.115"/>
+                        <Slider x:Name="preview_flash_slider" HorizontalAlignment="Left" Margin="314,65,0,0" VerticalAlignment="Top" Width="114" Maximum="100" SmallChange="1" ValueChanged="preview_flash_slider_ValueChanged"/>
+                        <Label x:Name="preview_flash_amount" Content="0%" HorizontalAlignment="Left" Margin="433,61,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="preview_typing_enabled" Content="Player is typing" HorizontalAlignment="Left" Margin="362,10,0,0" VerticalAlignment="Top" Checked="preview_typing_enabled_Checked" Unchecked="preview_typing_enabled_Checked"/>
 
                     </Grid>
                 </TabItem>
                 <TabItem Header="Background">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="background_enabled" Content="Enable team-based background color" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="background_enabled_Checked" Unchecked="background_enabled_Checked"/>
+                        <CheckBox x:Name="background_enabled" Content="Enable background color on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="background_enabled_Checked" Unchecked="background_enabled_Checked"/>
                         <xctk:ColorPicker x:Name="t_colorpicker" Margin="92,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="t_colorpicker_SelectedColorChanged" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Terrorist Color:" VerticalAlignment="Top"/>
                         <xctk:ColorPicker x:Name="ct_colorpicker" Margin="140,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="ct_colorpicker_SelectedColorChanged" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Counter-Terrorist Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="ambient_colorpicker" Margin="130,88,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="124" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="ambient_colorpicker_SelectedColorChanged" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Menu/Ambient Color:" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="background_peripheral_use" Content="Use background color with other peripheral devices" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" Checked="background_peripheral_use_Checked" Unchecked="background_peripheral_use_Checked"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Player Health">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="health_enabled" Content="Enable health effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Checked="health_enabled_Checked" Unchecked="health_enabled_Checked"/>
+                        <CheckBox x:Name="health_enabled" Content="Enable health effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Checked="health_enabled_Checked" Unchecked="health_enabled_Checked"/>
                         <xctk:ColorPicker x:Name="health_healthy_colorpicker" Margin="90,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="health_healthy_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Healthy Color:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
                         <xctk:ColorPicker x:Name="health_hurt_colorpicker" Margin="73,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180" SelectedColorChanged="health_hurt_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
@@ -379,7 +384,7 @@
                 </TabItem>
                 <TabItem Header="Player Ammo">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="ammo_enabled" Content="Enable ammo effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="ammo_enabled_Checked" Unchecked="ammo_enabled_Checked"/>
+                        <CheckBox x:Name="ammo_enabled" Content="Enable ammo effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="ammo_enabled_Checked" Unchecked="ammo_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Has Ammo Color:" VerticalAlignment="Top"/>
                         <xctk:ColorPicker x:Name="ammo_hasammo_colorpicker" Margin="108,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145" SelectedColorChanged="ammo_hasammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="No Ammo Color:" VerticalAlignment="Top"/>
@@ -401,7 +406,7 @@
                 </TabItem>
                 <TabItem Header="Bomb Event">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="bomb_enabled" Content="Enable bomb effects" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="bomb_enabled_Checked" Unchecked="bomb_enabled_Checked"/>
+                        <CheckBox x:Name="bomb_enabled" Content="Enable bomb effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="bomb_enabled_Checked" Unchecked="bomb_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Bomb Flash Color:" VerticalAlignment="Top"/>
                         <xctk:ColorPicker x:Name="bomb_flash_color_colorpicker" Margin="111,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="142" SelectedColorChanged="bomb_flash_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Bomb Primed Color:" VerticalAlignment="Top"/>
@@ -414,12 +419,13 @@
                         <Button x:Name="sequence_down_bomb" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_bomb_Click"/>
                         <CheckBox x:Name="bomb_display_winner" Content="Display winning team color" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Checked="bomb_display_winner_Checked" Unchecked="bomb_display_winner_Checked"/>
                         <CheckBox x:Name="bomb_gradual_effect" Content="Use gradual lighting" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Checked="bomb_gradual_effect_Checked" Unchecked="bomb_gradual_effect_Checked"/>
+                        <CheckBox x:Name="bomb_peripheral_use" Content="Use bomb effect with other peripheral devices" HorizontalAlignment="Left" Margin="536,13,0,0" VerticalAlignment="Top" Checked="bomb_peripheral_use_Checked" Unchecked="bomb_peripheral_use_Checked"/>
 
                     </Grid>
                 </TabItem>
                 <TabItem Header="Static Keys">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="statickeys_enabled" Content="Enable static keys" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="statickeys_enabled_Checked" Checked="statickeys_enabled_Checked"/>
+                        <CheckBox x:Name="statickeys_enabled" Content="Enable static keys on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="statickeys_enabled_Checked" Checked="statickeys_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Static Keys Color:" VerticalAlignment="Top"/>
                         <xctk:ColorPicker x:Name="statickeys_color_colorpicker" Margin="105,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="statickeys_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
                         <ListBox x:Name="statickeys_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
@@ -428,35 +434,51 @@
                         <Button x:Name="sequence_remove_statickeys" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_statickeys_Click"/>
                         <Button x:Name="sequence_up_statickeys" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_statickeys_Click"/>
                         <Button x:Name="sequence_down_statickeys" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_statickeys_Click"/>
-
                     </Grid>
                 </TabItem>
                 <TabItem Header="Flashbang Event">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="flashbang_enabled" Content="Enable flashbang effect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="flashbang_enabled_Checked" Checked="flashbang_enabled_Checked"/>
+                        <CheckBox x:Name="flashbang_enabled" Content="Enable flashbang effect on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="flashbang_enabled_Checked" Checked="flashbang_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Flashbang Color:" VerticalAlignment="Top"/>
                         <xctk:ColorPicker x:Name="flashbang_color_colorpicker" Margin="103,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="flashbang_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <CheckBox x:Name="flashbang_peripheral_use" Content="Use flashbang effect with other peripheral devices" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Checked="flashbang_peripheral_use_Checked" Unchecked="flashbang_peripheral_use_Checked"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Typing Keys">
+                    <Grid Background="#FFE5E5E5">
+                        <CheckBox x:Name="typing_enabled" Content="Enable typing keys on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="typing_enabled_Checked" Checked="typing_enabled_Checked"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Typing Keys Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="typing_color_colorpicker" Margin="112,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="typing_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <ListBox x:Name="typingkeys_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <Button x:Name="sequence_record_typingkeys" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_typingkeys_Click"/>
+                        <Button x:Name="sequence_remove_typingkeys" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_typingkeys_Click"/>
+                        <Button x:Name="sequence_up_typingkeys" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_typingkeys_Click"/>
+                        <Button x:Name="sequence_down_typingkeys" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_typingkeys_Click"/>
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="About">
                     <Grid Background="#FFE5E5E5">
-                        <Label Content="Logitech - CS:GO Integration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
-                        <Label Content="by Antonpup" HorizontalAlignment="Left" Margin="175,39,0,0" VerticalAlignment="Top"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="271">
-                            Source code for this project is availiable on 
-                            <Hyperlink NavigateUri="https://github.com/antonpup/Logitech-CSGO" RequestNavigate="Hyperlink_RequestNavigate">
-                                GitHub
-                            </Hyperlink>
-                            I can contacted via
-                            <Hyperlink NavigateUri="http://steamcommunity.com/id/pupant/" RequestNavigate="Hyperlink_RequestNavigate">
-                                Steam
-                            </Hyperlink>
-                        </TextBlock>
-                        <Label Content="v0.2.0" HorizontalAlignment="Left" Margin="214,13,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Logitech - CS:GO Integration" HorizontalAlignment="Left" Margin="8,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+                        <Label Content="by Antonpup" HorizontalAlignment="Left" Margin="173,26,0,0" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="13,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Source code for this project is available on "/><Hyperlink NavigateUri="https://github.com/antonpup/Logitech-CSGO"><Run Text="GitHub"/></Hyperlink><LineBreak/><Run Text="I can contacted via "/><Hyperlink NavigateUri="http://steamcommunity.com/id/pupant/"><Run Text="Steam"/></Hyperlink><LineBreak/><LineBreak/><Run Text="CS:GO and CS:GO logo are owned by "/><Hyperlink NavigateUri="http://www.valvesoftware.com/"><Run Text="Valve Software"/></Hyperlink><LineBreak/><Run Text="Logitech Gaming Software logo is owned by "/><Hyperlink NavigateUri="http://www.logitech.com/"><Run Text="Logitech"/></Hyperlink></TextBlock>
+                        <Label Content="v0.3.0" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
 
+        <tb:TaskbarIcon x:Name="trayicon"
+                    Visibility="Visible"
+                    ToolTipText="Logitech - CS:GO Integration"
+                    IconSource="Resources/logi_csgo_icon.ico">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="trayicon_menu_settings" Header="Show Options" Click="trayicon_menu_settings_Click" />
+                    <MenuItem x:Name="trayicon_menu_quit" Header="Quit" Click="trayicon_menu_quit_Click" />
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
     </Grid>
 </Window>

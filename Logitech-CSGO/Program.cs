@@ -12,17 +12,28 @@ namespace Logitech_CSGO
         public static Configuration Configuration { get; set; }
     }
     
-    class Program
+    static class Program
     {
         public static Application WinApp { get; private set; }
-        public static Window MainWindow = new ConfigUI();
+        public static Window MainWindow;
 
+        public static bool isSilent = false;
         
         static bool IsPlanted = false;
 
         [STAThread]
         static void Main(string[] args)
         {
+            foreach(string arg in args)
+            {
+                switch (arg)
+                {
+                    case("-silent"):
+                        isSilent = true;
+                        break;
+                }
+            }
+            
             //Load config
             Global.Configuration = ConfigManager.Load("Config");
 
@@ -40,10 +51,11 @@ namespace Logitech_CSGO
             Console.WriteLine("Listening for game integration calls...");
             Console.WriteLine("You can close this window to quit the program.");
 
+            MainWindow = new ConfigUI();
             WinApp = new Application();
-            WinApp.ShutdownMode = ShutdownMode.OnMainWindowClose;
+            WinApp.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             WinApp.MainWindow = MainWindow;
-            WinApp.Run(MainWindow); // note: blocking call
+            WinApp.Run(MainWindow);
 
             ConfigManager.Save("Config", Global.Configuration);
 
@@ -82,6 +94,7 @@ namespace Logitech_CSGO
             Global.geh.SetFlashAmount(gs.Player.State.Flashed);
             Global.geh.SetClip(gs.Player.Weapons.ActiveWeapon.AmmoClip);
             Global.geh.SetClipMax(gs.Player.Weapons.ActiveWeapon.AmmoClipMax);
+            Global.geh.SetPlayerActivity(gs.Player.Activity);
         }
     }
 }
