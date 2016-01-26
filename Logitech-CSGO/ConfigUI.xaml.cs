@@ -740,6 +740,7 @@ namespace Logitech_CSGO
         private void preview_enabled_Checked(object sender, RoutedEventArgs e)
         {
             Global.geh.SetPreview((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
+            Global.geh.SetForcedUpdate((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -873,5 +874,11 @@ namespace Logitech_CSGO
             //Do not close application
             e.Cancel = true;
         }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            Global.geh.SetForcedUpdate((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
+        }
+
     }
 }

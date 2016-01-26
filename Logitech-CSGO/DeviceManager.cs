@@ -40,7 +40,7 @@ namespace Logitech_CSGO
             }
         }
 
-        public bool UpdateDevices(Dictionary<DeviceKeys, System.Drawing.Color> keyColors)
+        public bool UpdateDevices(Dictionary<DeviceKeys, System.Drawing.Color> keyColors, bool forced = false)
         {
             bool anyUpdated = false;
             Dictionary<DeviceKeys, System.Drawing.Color> _keyColors = new Dictionary<DeviceKeys, System.Drawing.Color>(keyColors);
@@ -49,7 +49,7 @@ namespace Logitech_CSGO
             {
                 if (device.IsInitialized())
                 {
-                    if (device.UpdateDevice(_keyColors))
+                    if (device.UpdateDevice(_keyColors, forced))
                         anyUpdated = true;
                 }
             }

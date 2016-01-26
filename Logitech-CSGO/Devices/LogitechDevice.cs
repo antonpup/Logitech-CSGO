@@ -149,10 +149,16 @@ namespace Logitech_CSGO.Devices
         private String devicename = "Logitech";
         private bool isInitialized = false;
 
+        private bool keyboard_updated = false;
+        private bool peripheral_updated = false;
+
         //Keyboard stuff
         private Logitech_keyboardBitmapKeys[] allKeys = Enum.GetValues(typeof(Logitech_keyboardBitmapKeys)).Cast<Logitech_keyboardBitmapKeys>().ToArray();
         private byte[] bitmap = new byte[LogitechGSDK.LOGI_LED_BITMAP_SIZE];
         private Color peripheral_Color = Color.Black;
+        //Previous data
+        private byte[] previous_bitmap = new byte[LogitechGSDK.LOGI_LED_BITMAP_SIZE];
+        private Color previous_peripheral_Color = Color.Black;
 
         public bool Initialize()
         {
@@ -197,10 +203,12 @@ namespace Logitech_CSGO.Devices
 
         public void Reset()
         {
-            if (this.IsInitialized())
+            if (this.IsInitialized() && (keyboard_updated || peripheral_updated))
             {
                 LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB | LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
                 LogitechGSDK.LogiLedRestoreLighting();
+                keyboard_updated = false;
+                peripheral_updated = false;
             }
         }
 
@@ -223,24 +231,39 @@ namespace Logitech_CSGO.Devices
         }
 
 
-        private void SendColorsToKeyboard()
+        private void SendColorsToKeyboard(bool forced = false)
         {
-            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
+            if (!Enumerable.SequenceEqual(bitmap, previous_bitmap) || forced)
+            {
+                LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_PERKEY_RGB);
 
-            LogitechGSDK.LogiLedSetLightingFromBitmap(bitmap);
+                LogitechGSDK.LogiLedSetLightingFromBitmap(bitmap);
+                bitmap.CopyTo(previous_bitmap, 0);
+                keyboard_updated = true;
+            }
         }
 
-        private void SendColorToPeripheral(Color color)
+        private void SendColorToPeripheral(Color color, bool forced = false)
         {
-            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
-
-            if (Global.Configuration.bg_peripheral_use || Global.Configuration.bomb_peripheral_use || Global.Configuration.flashbang_peripheral_use)
+            if (!previous_peripheral_Color.Equals(color) || forced)
             {
-                LogitechGSDK.LogiLedRestoreLighting();
-                return;
-            }
+                LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
 
-            LogitechGSDK.LogiLedSetLighting((int)color.R / 255, (int)color.G / 255, (int)color.B / 255);
+                if (Global.Configuration.bg_peripheral_use || Global.Configuration.bomb_peripheral_use || Global.Configuration.flashbang_peripheral_use || Global.Configuration.burning_peripheral_use)
+                {
+                    LogitechGSDK.LogiLedSetLighting((int)color.R / 255, (int)color.G / 255, (int)color.B / 255);
+                    previous_peripheral_Color = color;
+                    peripheral_updated = true;
+                }
+                else
+                {
+                    if (peripheral_updated)
+                    {
+                        LogitechGSDK.LogiLedRestoreLighting();
+                        peripheral_updated = false;
+                    }
+                }
+            }
         }
 
         public bool IsInitialized()
@@ -248,7 +271,7 @@ namespace Logitech_CSGO.Devices
             return this.isInitialized;
         }
 
-        public bool UpdateDevice(Dictionary<DeviceKeys, Color> keyColors)
+        public bool UpdateDevice(Dictionary<DeviceKeys, Color> keyColors, bool forced = false)
         {
             try
             {
@@ -258,7 +281,7 @@ namespace Logitech_CSGO.Devices
 
                     if (localKey == Logitech_keyboardBitmapKeys.UNKNOWN && key.Key == DeviceKeys.Peripheral)
                     {
-                        SendColorToPeripheral(key.Value);
+                        SendColorToPeripheral(key.Value, forced);
                     }
                     else if(localKey != Logitech_keyboardBitmapKeys.UNKNOWN)
                     {
@@ -266,7 +289,7 @@ namespace Logitech_CSGO.Devices
                     }
                 }
 
-                    SendColorsToKeyboard();
+                SendColorsToKeyboard(forced);
                 return true;
             }
             catch(Exception e)
@@ -494,7 +517,6 @@ namespace Logitech_CSGO.Devices
                     return Logitech_keyboardBitmapKeys.NUM_PERIOD;
                 default:
                     return Logitech_keyboardBitmapKeys.UNKNOWN;
-                    break;
             }
         }
     }

@@ -14,8 +14,8 @@ namespace Logitech_CSGO
     {
         private bool isInitialized = false;
 
+        private bool isForced = false;
         private static Dictionary<Devices.DeviceKeys, Color> keyColors = new Dictionary<Devices.DeviceKeys, Color>();
-
         private static Dictionary<Devices.DeviceKeys, Color> final_keyColors = new Dictionary<Devices.DeviceKeys, Color>();
 
         private DeviceManager dev_manager = new DeviceManager();
@@ -123,6 +123,11 @@ namespace Logitech_CSGO
                 }
             }
            
+        }
+
+        public void SetForcedUpdate(bool forced)
+        {
+            this.isForced = forced;
         }
 
         public void SetPreview(bool preview)
@@ -386,7 +391,8 @@ namespace Logitech_CSGO
                     SetOneKey(key, Global.Configuration.typing_color);
             }
 
-            keyboard_updated = dev_manager.UpdateDevices(keyColors);
+            keyboard_updated = dev_manager.UpdateDevices(keyColors, this.isForced);
+            this.isForced = false;
 
             final_keyColors = keyColors;
 

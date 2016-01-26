@@ -148,6 +148,6 @@ namespace Logitech_CSGO.Devices
 
         bool IsConnected();
 
-        bool UpdateDevice(Dictionary<DeviceKeys, System.Drawing.Color> keyColors);
+        bool UpdateDevice(Dictionary<DeviceKeys, System.Drawing.Color> keyColors, bool forced = false);
     }
 }

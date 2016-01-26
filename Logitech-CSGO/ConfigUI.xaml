@@ -8,7 +8,7 @@
              xmlns:devices="clr-namespace:Logitech_CSGO.Devices"
              xmlns:local="clr-namespace:Logitech_CSGO" xmlns:Nodes="clr-namespace:CSGSI.Nodes;assembly=CSGSI" x:Class="Logitech_CSGO.ConfigUI"
              xmlns:tb="http://www.hardcodet.net/taskbar"
-             mc:Ignorable="d" Height="445" Width="860" MinWidth="860" MinHeight="445" MaxHeight="445" MaxWidth="860" ResizeMode="CanMinimize" Title="Logitech - CS:GO Integration" Loaded="Window_Loaded" Initialized="Window_Initialized" Closing="Window_Closing">
+             mc:Ignorable="d" Height="445" Width="860" MinWidth="860" MinHeight="445" MaxHeight="445" MaxWidth="860" ResizeMode="CanMinimize" Title="Logitech - CS:GO Integration" Loaded="Window_Loaded" Initialized="Window_Initialized" Closing="Window_Closing" Activated="Window_Activated">
     <Grid Background="Black">
         <Grid x:Name="keyboard_grid" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="823" Height="217">
         </Grid>
@@ -158,7 +158,7 @@
                         <Label Content="Logitech - CS:GO Integration" HorizontalAlignment="Left" Margin="8,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                         <Label Content="by Antonpup" HorizontalAlignment="Left" Margin="173,26,0,0" VerticalAlignment="Top"/>
                         <TextBlock HorizontalAlignment="Left" Margin="13,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Source code for this project is available on "/><Hyperlink NavigateUri="https://github.com/antonpup/Logitech-CSGO"><Run Text="GitHub"/></Hyperlink><LineBreak/><Run Text="I can contacted via "/><Hyperlink NavigateUri="http://steamcommunity.com/id/pupant/"><Run Text="Steam"/></Hyperlink><LineBreak/><LineBreak/><Run Text="CS:GO and CS:GO logo are owned by "/><Hyperlink NavigateUri="http://www.valvesoftware.com/"><Run Text="Valve Software"/></Hyperlink><LineBreak/><Run Text="Logitech Gaming Software logo is owned by "/><Hyperlink NavigateUri="http://www.logitech.com/"><Run Text="Logitech"/></Hyperlink></TextBlock>
-                        <Label Content="v0.4.0" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top"/>
+                        <Label Content="v0.4.1" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
             </TabControl>
