@@ -1,4 +1,5 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using Logitech_CSGO.Devices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,7 +42,7 @@ namespace Logitech_CSGO
         private TextBlock last_selected_key;
         private KeyboardRecordingType recordingKeystrokes = KeyboardRecordingType.None;
         private Stopwatch recording_stopwatch = new Stopwatch();
-        private List<LedCSharp.keyboardBitmapKeys> recordedKeys = new List<LedCSharp.keyboardBitmapKeys>();
+        private List<DeviceKeys> recordedKeys = new List<DeviceKeys>();
 
         private Timer preview_bomb_timer;
         private Timer preview_bomb_remove_effect_timer;
@@ -114,6 +115,12 @@ namespace Logitech_CSGO
                     this.typingkeys_keysequence.Items.Add(key);
                 }
 
+                this.burning_enabled.IsChecked = Global.Configuration.burning_enabled;
+                this.burning_color_colorpicker.SelectedColor = DrawingColorToMediaColor(Global.Configuration.burning_color);
+                this.burning_animation.IsChecked = Global.Configuration.burning_animation;
+                this.burning_peripheral_use.IsChecked = Global.Configuration.burning_peripheral_use;
+
+
                 virtual_keyboard_timer = new Timer(100);
                 virtual_keyboard_timer.Elapsed += new ElapsedEventHandler(virtual_keyboard_timer_Tick);
                 virtual_keyboard_timer.Start();
@@ -127,6 +134,68 @@ namespace Logitech_CSGO
 
                 settingsloaded = true;
             }
+
+            List<KeyboardKey> layout = Global.kbLayout.GetLayout();
+            /*
+             <Border BorderBrush="Gray" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" CornerRadius="5">
+                <TextBlock Foreground="White" Text="ESC" Width="30" Height="30" TextDecorations="{x:Null}" TextAlignment="Center" RenderTransformOrigin="0.52,0.44" Margin="0" FontWeight="Bold" MouseDown="keyboard_grid_pressed" MouseMove="keyboard_grid_moved" Tag="{x:Static devices:DeviceKeys.ESC}" IsHitTestVisible="True"/> <!-- DeviceKeys -->
+            </Border>
+             */
+            double cornerRadius = 5;
+            double current_height = 0;
+            double current_width = 0;
+            bool isFirstInRow = true;
+            
+            foreach(KeyboardKey key in layout)
+            {
+                double keyMargin_Left = (isFirstInRow ? 0 : key.margin_left);
+                double keyMargin_Top = (isFirstInRow ? 0 : key.margin_top);
+                
+
+                Border keyBorder = new Border();
+                keyBorder.CornerRadius = new CornerRadius(cornerRadius);
+                //keyBorder.Width = key.width;
+                //keyBorder.Height = key.height;
+                keyBorder.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                keyBorder.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                keyBorder.Margin = new Thickness(current_width + keyMargin_Left, current_height + keyMargin_Top, 0, 0);
+                keyBorder.Visibility = System.Windows.Visibility.Visible;
+                keyBorder.BorderThickness = new Thickness(1);
+                keyBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255,128,128,128));
+
+                TextBlock keyCap = new TextBlock();
+                keyCap.Text = key.visualName;
+                keyCap.Tag = key.tag;
+                keyCap.FontSize = key.font_size;
+                keyCap.FontWeight = FontWeights.Bold;
+                keyCap.FontFamily = new FontFamily("Segoe UI");
+                keyCap.Width = key.width;
+                keyCap.Height = key.height;
+                keyCap.TextAlignment = TextAlignment.Center;
+                keyCap.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+                keyCap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                keyCap.Margin = new Thickness(0);
+                keyCap.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+                keyCap.Visibility = System.Windows.Visibility.Visible;
+                keyCap.MouseDown += keyboard_grid_pressed;
+                keyCap.MouseMove += keyboard_grid_moved;
+                keyCap.IsHitTestVisible = true;
+
+                keyBorder.Child = keyCap;
+
+                this.keyboard_grid.Children.Add(keyBorder);
+                isFirstInRow = false;
+
+                current_width += key.width + keyMargin_Left;
+                if (key.line_break)
+                {
+                    current_height += 37;
+                    current_width = 0;
+                    isFirstInRow = true;
+                }
+            }
+            this.keyboard_grid.UpdateLayout();
+
         }
 
         public static bool ApplicationIsActivated()
@@ -158,7 +227,7 @@ namespace Logitech_CSGO
             Dispatcher.Invoke(
                         () =>
                         {
-                            Dictionary<LedCSharp.keyboardBitmapKeys, System.Drawing.Color> keylights = new Dictionary<LedCSharp.keyboardBitmapKeys, System.Drawing.Color>();
+                            Dictionary<Devices.DeviceKeys, System.Drawing.Color> keylights = new Dictionary<Devices.DeviceKeys, System.Drawing.Color>();
 
                             if ((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false)
                                 keylights = Global.geh.GetKeyboardLights();
@@ -166,34 +235,34 @@ namespace Logitech_CSGO
                                 foreach (var child in this.keyboard_grid.Children)
                                 {
                                     if (child is TextBlock &&
-                                        (child as TextBlock).Tag is LedCSharp.keyboardBitmapKeys
+                                        (child as TextBlock).Tag is Devices.DeviceKeys
                                         )
                                     {
-                                        if(keylights.ContainsKey((LedCSharp.keyboardBitmapKeys)(child as TextBlock).Tag))
+                                        if(keylights.ContainsKey((Devices.DeviceKeys)(child as TextBlock).Tag))
                                         {
-                                            System.Drawing.Color keycolor = keylights[(LedCSharp.keyboardBitmapKeys)(child as TextBlock).Tag];
+                                            System.Drawing.Color keycolor = keylights[(Devices.DeviceKeys)(child as TextBlock).Tag];
 
                                             (child as TextBlock).Foreground = new SolidColorBrush(DrawingColorToMediaColor(keycolor));
                                         }
                                         
-                                        if (this.recordedKeys.Contains((LedCSharp.keyboardBitmapKeys)(child as TextBlock).Tag))
+                                        if (this.recordedKeys.Contains((Devices.DeviceKeys)(child as TextBlock).Tag))
                                             (child as TextBlock).Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb((byte)(Math.Min(Math.Pow(Math.Sin((double)recording_stopwatch.ElapsedMilliseconds / 1000.0) + 0.05, 2.0), 1.0) * 255), (byte)0, (byte)255, (byte)0));
                                         else
                                             (child as TextBlock).Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb((byte)0, (byte)0, (byte)0, (byte)0));
                                     }
                                     else if (child is Border &&
                                         (child as Border).Child is TextBlock &&
-                                        ((child as Border).Child as TextBlock).Tag is LedCSharp.keyboardBitmapKeys
+                                        ((child as Border).Child as TextBlock).Tag is Devices.DeviceKeys
                                         )
                                     {
-                                        if (keylights.ContainsKey((LedCSharp.keyboardBitmapKeys)((child as Border).Child as TextBlock).Tag))
+                                        if (keylights.ContainsKey((Devices.DeviceKeys)((child as Border).Child as TextBlock).Tag))
                                         {
-                                            System.Drawing.Color keycolor = keylights[(LedCSharp.keyboardBitmapKeys)((child as Border).Child as TextBlock).Tag];
+                                            System.Drawing.Color keycolor = keylights[(Devices.DeviceKeys)((child as Border).Child as TextBlock).Tag];
 
                                             ((child as Border).Child as TextBlock).Foreground = new SolidColorBrush(DrawingColorToMediaColor(keycolor));
                                         }
                                         
-                                        if (this.recordedKeys.Contains((LedCSharp.keyboardBitmapKeys)((child as Border).Child as TextBlock).Tag))
+                                        if (this.recordedKeys.Contains((Devices.DeviceKeys)((child as Border).Child as TextBlock).Tag))
                                             (child as Border).Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb((byte)(Math.Min(Math.Pow(Math.Sin((double)recording_stopwatch.ElapsedMilliseconds / 1000.0) + 0.05, 2.0), 1.0) * 255), (byte)0, (byte)255, (byte)0));
                                         else
                                             (child as Border).Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb((byte)0, (byte)0, (byte)0, (byte)0));
@@ -234,11 +303,11 @@ namespace Logitech_CSGO
             preview_bomb_remove_effect_timer.Stop();
         }
 
-        private List<LedCSharp.keyboardBitmapKeys> SequenceToList(ItemCollection items)
+        private List<Devices.DeviceKeys> SequenceToList(ItemCollection items)
         {
-            List<LedCSharp.keyboardBitmapKeys> newsequence = new List<LedCSharp.keyboardBitmapKeys>();
+            List<Devices.DeviceKeys> newsequence = new List<Devices.DeviceKeys>();
 
-            foreach (LedCSharp.keyboardBitmapKeys key in items)
+            foreach (Devices.DeviceKeys key in items)
             {
                 newsequence.Add(key);
             }
@@ -306,7 +375,7 @@ namespace Logitech_CSGO
 
             if (recordingKeystrokes == KeyboardRecordingType.None)
             {
-                this.recordedKeys = new List<LedCSharp.keyboardBitmapKeys>();
+                this.recordedKeys = new List<Devices.DeviceKeys>();
 
                 button.Content = "Stop Recording";
                 recording_stopwatch.Restart();
@@ -350,7 +419,7 @@ namespace Logitech_CSGO
                         break;
                 }
 
-                this.recordedKeys = new List<LedCSharp.keyboardBitmapKeys>();
+                this.recordedKeys = new List<Devices.DeviceKeys>();
                 button.Content = "Add/Record";
                 recording_stopwatch.Stop();
                 recordingKeystrokes = KeyboardRecordingType.None;
@@ -449,12 +518,12 @@ namespace Logitech_CSGO
 
         private void virtualkeyboard_key_selected(TextBlock key)
         {
-            if (recordingKeystrokes != KeyboardRecordingType.None && key.Tag is LedCSharp.keyboardBitmapKeys)
+            if (recordingKeystrokes != KeyboardRecordingType.None && key.Tag is Devices.DeviceKeys)
             {
-                if (recordedKeys.Contains((LedCSharp.keyboardBitmapKeys)(key.Tag)))
-                    recordedKeys.Remove((LedCSharp.keyboardBitmapKeys)(key.Tag));
+                if (recordedKeys.Contains((Devices.DeviceKeys)(key.Tag)))
+                    recordedKeys.Remove((Devices.DeviceKeys)(key.Tag));
                 else
-                    recordedKeys.Add((LedCSharp.keyboardBitmapKeys)(key.Tag));
+                    recordedKeys.Add((Devices.DeviceKeys)(key.Tag));
                 last_selected_key = key;
             }
         }
@@ -519,6 +588,16 @@ namespace Logitech_CSGO
             {
                 this.preview_flash_amount.Content = flash_val + "%";
                 Global.geh.SetFlashAmount((int)(((double)flash_val / 100.0) * 255.0));
+            }
+        }
+
+        private void preview_burning_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            int burning_val = (int)this.preview_burning_slider.Value;
+            if (this.preview_burning_amount is Label)
+            {
+                this.preview_burning_amount.Content = burning_val + "%";
+                Global.geh.SetBurnAmount((int)(((double)burning_val / 100.0) * 255.0));
             }
         }
 
@@ -724,9 +803,30 @@ namespace Logitech_CSGO
             Global.Configuration.bomb_peripheral_use = (this.bomb_peripheral_use.IsChecked.HasValue) ? this.bomb_peripheral_use.IsChecked.Value : false;
         }
 
-         private void flashbang_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        private void flashbang_peripheral_use_Checked(object sender, RoutedEventArgs e)
         {
             Global.Configuration.flashbang_peripheral_use = (this.flashbang_peripheral_use.IsChecked.HasValue) ? this.flashbang_peripheral_use.IsChecked.Value : false;
+        }
+
+        private void burning_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.burning_enabled = (this.burning_enabled.IsChecked.HasValue) ? this.burning_enabled.IsChecked.Value : false;
+        }
+
+        private void burning_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.burning_color_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.burning_color = MediaColorToDrawingColor(this.burning_color_colorpicker.SelectedColor.Value);
+        }
+
+        private void burning_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.burning_peripheral_use = (this.burning_peripheral_use.IsChecked.HasValue) ? this.burning_peripheral_use.IsChecked.Value : false;
+        }
+
+        private void burning_animation_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.burning_animation = (this.burning_animation.IsChecked.HasValue) ? this.burning_animation.IsChecked.Value : false;
         }
 
         private void trayicon_menu_quit_Click(object sender, RoutedEventArgs e)
@@ -773,6 +873,5 @@ namespace Logitech_CSGO
             //Do not close application
             e.Cancel = true;
         }
-
     }
 }

@@ -10,6 +10,7 @@ namespace Logitech_CSGO
         public static GameEventHandler geh = new GameEventHandler();
         public static GameStateListener gsl;
         public static Configuration Configuration { get; set; }
+        public static KeyboardLayouts kbLayout = new KeyboardLayouts();
     }
     
     static class Program
@@ -92,6 +93,7 @@ namespace Logitech_CSGO
             Global.geh.SetTeam(gs.Player.Team);
             Global.geh.SetHealth(gs.Player.State.Health);
             Global.geh.SetFlashAmount(gs.Player.State.Flashed);
+            Global.geh.SetBurnAmount(gs.Player.State.Burning);
             Global.geh.SetClip(gs.Player.Weapons.ActiveWeapon.AmmoClip);
             Global.geh.SetClipMax(gs.Player.Weapons.ActiveWeapon.AmmoClipMax);
             Global.geh.SetPlayerActivity(gs.Player.Activity);
