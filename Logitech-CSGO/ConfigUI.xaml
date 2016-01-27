@@ -45,9 +45,9 @@
                         <CheckBox x:Name="background_enabled" Content="Enable background color on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="background_enabled_Checked" Unchecked="background_enabled_Checked"/>
                         <xctk:ColorPicker x:Name="t_colorpicker" Margin="92,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="162" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="t_colorpicker_SelectedColorChanged" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Terrorist Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="ct_colorpicker" Margin="140,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="ct_colorpicker_SelectedColorChanged" />
+                        <xctk:ColorPicker x:Name="ct_colorpicker" Margin="140,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="114" ColorMode="ColorCanvas" SelectedColorChanged="ct_colorpicker_SelectedColorChanged" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Counter-Terrorist Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="ambient_colorpicker" Margin="95,88,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="159" UsingAlphaChannel="False" ColorMode="ColorCanvas" SelectedColorChanged="ambient_colorpicker_SelectedColorChanged" />
+                        <xctk:ColorPicker x:Name="ambient_colorpicker" Margin="95,88,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="159" ColorMode="ColorCanvas" SelectedColorChanged="ambient_colorpicker_SelectedColorChanged" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Ambient Color:" VerticalAlignment="Top"/>
                         <CheckBox x:Name="background_peripheral_use" Content="Use background color with other peripheral devices" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" Checked="background_peripheral_use_Checked" Unchecked="background_peripheral_use_Checked"/>
                     </Grid>
@@ -55,9 +55,9 @@
                 <TabItem Header="Player Health">
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="health_enabled" Content="Enable health effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Checked="health_enabled_Checked" Unchecked="health_enabled_Checked"/>
-                        <xctk:ColorPicker x:Name="health_healthy_colorpicker" Margin="90,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="health_healthy_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="health_healthy_colorpicker" Margin="90,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="health_healthy_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Healthy Color:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
-                        <xctk:ColorPicker x:Name="health_hurt_colorpicker" Margin="73,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180" SelectedColorChanged="health_hurt_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="health_hurt_colorpicker" Margin="73,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180" SelectedColorChanged="health_hurt_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Hurt Color:" VerticalAlignment="Top" Grid.ColumnSpan="3"/>
                         <ComboBox x:Name="health_effect_type" HorizontalAlignment="Left" Margin="77,88,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="health_effect_type_SelectionChanged">
                             <ComboBox.DataContext>
@@ -77,9 +77,9 @@
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="ammo_enabled" Content="Enable ammo effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="ammo_enabled_Checked" Unchecked="ammo_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Has Ammo Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="ammo_hasammo_colorpicker" Margin="108,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145" SelectedColorChanged="ammo_hasammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="ammo_hasammo_colorpicker" Margin="108,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="145" SelectedColorChanged="ammo_hasammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="No Ammo Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="ammo_noammo_colorpicker" Margin="104,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" SelectedColorChanged="ammo_noammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="ammo_noammo_colorpicker" Margin="104,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="149" SelectedColorChanged="ammo_noammo_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Effect Type:" VerticalAlignment="Top"/>
                         <ComboBox x:Name="ammo_effect_type" HorizontalAlignment="Left" Margin="77,88,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="ammo_effect_type_SelectionChanged">
                             <ComboBox.DataContext>
@@ -99,9 +99,9 @@
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="bomb_enabled" Content="Enable bomb effects on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="bomb_enabled_Checked" Unchecked="bomb_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Bomb Flash Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="bomb_flash_color_colorpicker" Margin="111,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="142" SelectedColorChanged="bomb_flash_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="bomb_flash_color_colorpicker" Margin="111,30,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="142" SelectedColorChanged="bomb_flash_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Bomb Primed Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="bomb_primed_color_colorpicker" Margin="122,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" SelectedColorChanged="bomb_primed_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="bomb_primed_color_colorpicker" Margin="122,59,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" SelectedColorChanged="bomb_primed_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
                         <ListBox x:Name="bomb_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
                         <Button x:Name="sequence_record_bomb" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_bomb_Click"/>
@@ -117,25 +117,33 @@
                 <TabItem Header="Static Keys">
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="statickeys_enabled" Content="Enable static keys on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="statickeys_enabled_Checked" Checked="statickeys_enabled_Checked"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Static Keys Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="statickeys_color_colorpicker" Margin="105,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="163" SelectedColorChanged="statickeys_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Static Keys (Group 1) Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="statickeys_color_colorpicker" Margin="159,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="109" SelectedColorChanged="statickeys_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <ListBox x:Name="statickeys_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence (Group 1)" VerticalAlignment="Top"/>
                         <Button x:Name="sequence_record_statickeys" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_statickeys_Click"/>
                         <Button x:Name="sequence_remove_statickeys" Content="Remove" HorizontalAlignment="Left" Margin="456,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_statickeys_Click"/>
                         <Button x:Name="sequence_up_statickeys" Content="Move Up" HorizontalAlignment="Left" Margin="456,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_statickeys_Click"/>
                         <Button x:Name="sequence_down_statickeys" Content="Move Down" HorizontalAlignment="Left" Margin="456,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_statickeys_Click"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,62,0,0" TextWrapping="Wrap" Text="Static Keys (Group 2) Color:" VerticalAlignment="Top"/>
+                        <xctk:ColorPicker x:Name="statickeys_2_color_colorpicker" Margin="159,58,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="109" SelectedColorChanged="statickeys_2_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
+                        <ListBox x:Name="statickeys_2_keysequence" HorizontalAlignment="Left" Height="101" Margin="556,30,0,0" VerticalAlignment="Top" Width="169"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="554,9,0,0" TextWrapping="Wrap" Text="Key Sequence (Group 2)" VerticalAlignment="Top"/>
+                        <Button x:Name="sequence_record_statickeys_2" Content="Add/Record" HorizontalAlignment="Left" Margin="729,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_statickeys_2_Click"/>
+                        <Button x:Name="sequence_remove_statickeys_2" Content="Remove" HorizontalAlignment="Left" Margin="729,60,0,0" VerticalAlignment="Top" Width="75" Click="sequence_remove_statickeys_2_Click"/>
+                        <Button x:Name="sequence_up_statickeys_2" Content="Move Up" HorizontalAlignment="Left" Margin="729,86,0,0" VerticalAlignment="Top" Width="75" Click="sequence_up_statickeys_2_Click"/>
+                        <Button x:Name="sequence_down_statickeys_2" Content="Move Down" HorizontalAlignment="Left" Margin="729,111,0,0" VerticalAlignment="Top" Width="75" Click="sequence_down_statickeys_2_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Burning/Flashbang Event">
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="flashbang_enabled" Content="Enable flashbang effect on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="flashbang_enabled_Checked" Checked="flashbang_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Flashbang Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="flashbang_color_colorpicker" Margin="103,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="flashbang_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="flashbang_color_colorpicker" Margin="103,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="flashbang_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <CheckBox x:Name="flashbang_peripheral_use" Content="Use flashbang effect with other peripheral devices" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" Checked="flashbang_peripheral_use_Checked" Unchecked="flashbang_peripheral_use_Checked"/>
                         <CheckBox x:Name="burning_enabled" Content="Enable burning effect on keyboard" HorizontalAlignment="Left" Margin="299,10,0,0" VerticalAlignment="Top" Unchecked="burning_enabled_Checked" Checked="burning_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="299,33,0,0" TextWrapping="Wrap" Text="Burning Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="burning_color_colorpicker" Margin="380,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177" SelectedColorChanged="burning_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="burning_color_colorpicker" Margin="380,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177" SelectedColorChanged="burning_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <CheckBox x:Name="burning_animation" Content="Animate the burning effect" HorizontalAlignment="Left" Margin="299,58,0,0" VerticalAlignment="Top" Checked="burning_animation_Checked" Unchecked="burning_animation_Checked"/>
                         <CheckBox x:Name="burning_peripheral_use" Content="Use burning effect with other peripheral devices" HorizontalAlignment="Left" Margin="299,78,0,0" VerticalAlignment="Top" Checked="burning_peripheral_use_Checked" Unchecked="burning_peripheral_use_Checked"/>
                     </Grid>
@@ -144,7 +152,7 @@
                     <Grid Background="#FFE5E5E5">
                         <CheckBox x:Name="typing_enabled" Content="Enable typing keys on keyboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Unchecked="typing_enabled_Checked" Checked="typing_enabled_Checked"/>
                         <TextBlock HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Typing Keys Color:" VerticalAlignment="Top"/>
-                        <xctk:ColorPicker x:Name="typing_color_colorpicker" Margin="112,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="typing_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" />
+                        <xctk:ColorPicker x:Name="typing_color_colorpicker" Margin="112,29,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" SelectedColorChanged="typing_color_colorpicker_SelectedColorChanged" ColorMode="ColorCanvas" UsingAlphaChannel="False" />
                         <ListBox x:Name="typingkeys_keysequence" HorizontalAlignment="Left" Height="101" Margin="283,30,0,0" VerticalAlignment="Top" Width="169"/>
                         <TextBlock HorizontalAlignment="Left" Margin="281,9,0,0" TextWrapping="Wrap" Text="Key Sequence" VerticalAlignment="Top"/>
                         <Button x:Name="sequence_record_typingkeys" Content="Add/Record" HorizontalAlignment="Left" Margin="456,33,0,0" VerticalAlignment="Top" Width="75" Click="sequence_record_typingkeys_Click"/>
@@ -158,7 +166,7 @@
                         <Label Content="Logitech - CS:GO Integration" HorizontalAlignment="Left" Margin="8,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
                         <Label Content="by Antonpup" HorizontalAlignment="Left" Margin="173,26,0,0" VerticalAlignment="Top"/>
                         <TextBlock HorizontalAlignment="Left" Margin="13,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Source code for this project is available on "/><Hyperlink NavigateUri="https://github.com/antonpup/Logitech-CSGO"><Run Text="GitHub"/></Hyperlink><LineBreak/><Run Text="I can contacted via "/><Hyperlink NavigateUri="http://steamcommunity.com/id/pupant/"><Run Text="Steam"/></Hyperlink><LineBreak/><LineBreak/><Run Text="CS:GO and CS:GO logo are owned by "/><Hyperlink NavigateUri="http://www.valvesoftware.com/"><Run Text="Valve Software"/></Hyperlink><LineBreak/><Run Text="Logitech Gaming Software logo is owned by "/><Hyperlink NavigateUri="http://www.logitech.com/"><Run Text="Logitech"/></Hyperlink></TextBlock>
-                        <Label Content="v0.4.1" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top"/>
+                        <Label Content="v0.4.2" HorizontalAlignment="Left" Margin="212,9,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
             </TabControl>

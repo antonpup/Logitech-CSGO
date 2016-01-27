@@ -26,7 +26,8 @@ namespace Logitech_CSGO
         HealthKeys,
         AmmoKeys,
         BombKeys,
-        StaticKeys,
+        StaticKeysGroup1,
+        StaticKeysGroup2,
         TypingKeys
     }
     
@@ -102,6 +103,11 @@ namespace Logitech_CSGO
                 foreach (var key in Global.Configuration.staticKeys)
                 {
                     this.statickeys_keysequence.Items.Add(key);
+                }
+                this.statickeys_2_color_colorpicker.SelectedColor = DrawingColorToMediaColor(Global.Configuration.statickeys_2_color);
+                foreach (var key in Global.Configuration.staticKeys_2)
+                {
+                    this.statickeys_2_keysequence.Items.Add(key);
                 }
 
                 this.flashbang_enabled.IsChecked = Global.Configuration.flashbang_enabled;
@@ -409,8 +415,11 @@ namespace Logitech_CSGO
                     case (KeyboardRecordingType.BombKeys):
                         Global.Configuration.bombKeys = SequenceToList(sequence_listbox.Items);
                         break;
-                    case (KeyboardRecordingType.StaticKeys):
+                    case (KeyboardRecordingType.StaticKeysGroup1):
                         Global.Configuration.staticKeys = SequenceToList(sequence_listbox.Items);
+                        break;
+                    case (KeyboardRecordingType.StaticKeysGroup2):
+                        Global.Configuration.staticKeys_2 = SequenceToList(sequence_listbox.Items);
                         break;
                     case (KeyboardRecordingType.TypingKeys):
                         Global.Configuration.typingKeys = SequenceToList(sequence_listbox.Items);
@@ -430,119 +439,7 @@ namespace Logitech_CSGO
             }
         }
 
-        private void background_enabled_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.bg_team_enabled = (this.background_enabled.IsChecked.HasValue) ? this.background_enabled.IsChecked.Value : false;
-        }
-
-        private void t_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.t_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.t_color = MediaColorToDrawingColor(this.t_colorpicker.SelectedColor.Value);
-        }
-
-        private void ct_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.ct_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.ct_color = MediaColorToDrawingColor(this.ct_colorpicker.SelectedColor.Value);
-        }
-
-        private void health_enabled_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.health_enabled = (this.health_enabled.IsChecked.HasValue) ? this.health_enabled.IsChecked.Value : false;
-        }
-
-        private void health_healthy_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.health_healthy_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.healthy_color = MediaColorToDrawingColor(this.health_healthy_colorpicker.SelectedColor.Value);
-        }
-
-        private void health_hurt_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.health_hurt_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.hurt_color = MediaColorToDrawingColor(this.health_hurt_colorpicker.SelectedColor.Value);
-        }
-
-        private void sequence_remove_statickeys_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxRemoveSelected(this.statickeys_keysequence))
-                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
-        }
-
-        private void sequence_up_statickeys_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxMoveSelectedUp(this.statickeys_keysequence))
-                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
-        }
-
-        private void sequence_down_statickeys_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxMoveSelectedDown(this.statickeys_keysequence))
-                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
-        }
-
-        private void statickeys_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.statickeys_color_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.statickeys_color = MediaColorToDrawingColor(this.statickeys_color_colorpicker.SelectedColor.Value);
-        }
-
-        private void statickeys_enabled_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.statickeys_enabled = (this.statickeys_enabled.IsChecked.HasValue) ? this.statickeys_enabled.IsChecked.Value : false;
-        }
-
-        private void sequence_remove_health_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxRemoveSelected(this.health_keysequence))
-                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
-        }
-
-        private void sequence_up_health_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxMoveSelectedUp(this.health_keysequence))
-                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
-        }
-
-        private void sequence_down_health_Click(object sender, RoutedEventArgs e)
-        {
-            if (ListBoxMoveSelectedDown(this.health_keysequence))
-                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
-        }
-
-        private void sequence_record_statickeys_Click(object sender, RoutedEventArgs e)
-        {
-            RecordKeySequence(KeyboardRecordingType.StaticKeys, (sender as Button), this.statickeys_keysequence);
-        }
-
-        private void virtualkeyboard_key_selected(TextBlock key)
-        {
-            if (recordingKeystrokes != KeyboardRecordingType.None && key.Tag is Devices.DeviceKeys)
-            {
-                if (recordedKeys.Contains((Devices.DeviceKeys)(key.Tag)))
-                    recordedKeys.Remove((Devices.DeviceKeys)(key.Tag));
-                else
-                    recordedKeys.Add((Devices.DeviceKeys)(key.Tag));
-                last_selected_key = key;
-            }
-        }
-
-        private void keyboard_grid_pressed(object sender, MouseButtonEventArgs e)
-        {
-            if(sender is TextBlock)
-            {
-                virtualkeyboard_key_selected(sender as TextBlock);
-            }
-        }
-
-        private void keyboard_grid_moved(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed && sender is TextBlock && last_selected_key != sender as TextBlock)
-            {
-                virtualkeyboard_key_selected(sender as TextBlock);
-            }
-        }
+        ////Preview
 
         private void preview_team_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -601,6 +498,104 @@ namespace Logitech_CSGO
             }
         }
 
+        private void preview_bomb_start_Click(object sender, RoutedEventArgs e)
+        {
+            this.preview_bomb_defused.IsEnabled = true;
+            this.preview_bomb_start.IsEnabled = false;
+
+            Global.geh.SetBombState(CSGSI.Nodes.BombState.Planted);
+            preview_bomb_timer.Start();
+            preview_bomb_remove_effect_timer.Stop();
+        }
+
+        private void preview_bomb_defused_Click(object sender, RoutedEventArgs e)
+        {
+            this.preview_bomb_defused.IsEnabled = false;
+            this.preview_bomb_start.IsEnabled = true;
+
+            Global.geh.SetBombState(CSGSI.Nodes.BombState.Defused);
+            preview_bomb_timer.Stop();
+            preview_bomb_remove_effect_timer.Start();
+        }
+
+        private void preview_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.geh.SetPreview((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
+            Global.geh.SetForcedUpdate((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
+        }
+
+        private void preview_typing_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.geh.SetPlayerActivity((((this.preview_typing_enabled.IsChecked.HasValue) ? this.preview_typing_enabled.IsChecked.Value : false) ? CSGSI.Nodes.PlayerActivity.TextInput : CSGSI.Nodes.PlayerActivity.Undefined));
+        }
+
+        ////Background
+
+        private void background_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.bg_team_enabled = (this.background_enabled.IsChecked.HasValue) ? this.background_enabled.IsChecked.Value : false;
+        }
+
+        private void background_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.bg_peripheral_use = (this.background_peripheral_use.IsChecked.HasValue) ? this.background_peripheral_use.IsChecked.Value : false;
+        }
+
+        private void t_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.t_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.t_color = MediaColorToDrawingColor(this.t_colorpicker.SelectedColor.Value);
+        }
+
+        private void ct_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.ct_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.ct_color = MediaColorToDrawingColor(this.ct_colorpicker.SelectedColor.Value);
+        }
+
+        private void ambient_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.ambient_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.ambient_color = MediaColorToDrawingColor(this.ambient_colorpicker.SelectedColor.Value);
+        }
+
+        ////Player Health
+
+        private void health_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.health_enabled = (this.health_enabled.IsChecked.HasValue) ? this.health_enabled.IsChecked.Value : false;
+        }
+
+        private void health_healthy_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.health_healthy_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.healthy_color = MediaColorToDrawingColor(this.health_healthy_colorpicker.SelectedColor.Value);
+        }
+
+        private void health_hurt_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.health_hurt_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.hurt_color = MediaColorToDrawingColor(this.health_hurt_colorpicker.SelectedColor.Value);
+        }
+
+        private void sequence_remove_health_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxRemoveSelected(this.health_keysequence))
+                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
+        }
+
+        private void sequence_up_health_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedUp(this.health_keysequence))
+                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
+        }
+
+        private void sequence_down_health_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedDown(this.health_keysequence))
+                Global.Configuration.healthKeys = SequenceToList(this.health_keysequence.Items);
+        }
+
         private void health_effect_type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Global.Configuration.health_effect_type = (PercentEffectType)Enum.Parse(typeof(PercentEffectType), this.health_effect_type.SelectedIndex.ToString());
@@ -610,6 +605,8 @@ namespace Logitech_CSGO
         {
             RecordKeySequence(KeyboardRecordingType.HealthKeys, (sender as Button), this.health_keysequence);
         }
+
+        ////Player Ammo
 
         private void ammo_enabled_Checked(object sender, RoutedEventArgs e)
         {
@@ -655,6 +652,8 @@ namespace Logitech_CSGO
             if (ListBoxMoveSelectedDown(this.ammo_keysequence))
                 Global.Configuration.ammoKeys = SequenceToList(this.ammo_keysequence.Items);
         }
+
+        ////Bomb
 
         private void bomb_enabled_Checked(object sender, RoutedEventArgs e)
         {
@@ -706,25 +705,77 @@ namespace Logitech_CSGO
             Global.Configuration.bomb_gradual = (this.bomb_gradual_effect.IsChecked.HasValue) ? this.bomb_gradual_effect.IsChecked.Value : false;
         }
 
-        private void preview_bomb_start_Click(object sender, RoutedEventArgs e)
+        private void bomb_peripheral_use_Checked(object sender, RoutedEventArgs e)
         {
-            this.preview_bomb_defused.IsEnabled = true;
-            this.preview_bomb_start.IsEnabled = false;
-
-            Global.geh.SetBombState(CSGSI.Nodes.BombState.Planted);
-            preview_bomb_timer.Start();
-            preview_bomb_remove_effect_timer.Stop();
+            Global.Configuration.bomb_peripheral_use = (this.bomb_peripheral_use.IsChecked.HasValue) ? this.bomb_peripheral_use.IsChecked.Value : false;
         }
 
-        private void preview_bomb_defused_Click(object sender, RoutedEventArgs e)
-        {
-            this.preview_bomb_defused.IsEnabled = false;
-            this.preview_bomb_start.IsEnabled = true;
+        ////Static Keys
 
-            Global.geh.SetBombState(CSGSI.Nodes.BombState.Defused);
-            preview_bomb_timer.Stop();
-            preview_bomb_remove_effect_timer.Start();
+        private void sequence_remove_statickeys_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxRemoveSelected(this.statickeys_keysequence))
+                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
         }
+
+        private void sequence_up_statickeys_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedUp(this.statickeys_keysequence))
+                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
+        }
+
+        private void sequence_down_statickeys_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedDown(this.statickeys_keysequence))
+                Global.Configuration.staticKeys = SequenceToList(this.statickeys_keysequence.Items);
+        }
+
+        private void statickeys_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.statickeys_color_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.statickeys_color = MediaColorToDrawingColor(this.statickeys_color_colorpicker.SelectedColor.Value);
+        }
+
+        private void statickeys_enabled_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.statickeys_enabled = (this.statickeys_enabled.IsChecked.HasValue) ? this.statickeys_enabled.IsChecked.Value : false;
+        }
+
+        private void sequence_record_statickeys_Click(object sender, RoutedEventArgs e)
+        {
+            RecordKeySequence(KeyboardRecordingType.StaticKeysGroup1, (sender as Button), this.statickeys_keysequence);
+        }
+
+        private void statickeys_2_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.statickeys_2_color_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.statickeys_2_color = MediaColorToDrawingColor(this.statickeys_2_color_colorpicker.SelectedColor.Value);
+        }
+
+        private void sequence_record_statickeys_2_Click(object sender, RoutedEventArgs e)
+        {
+            RecordKeySequence(KeyboardRecordingType.StaticKeysGroup2, (sender as Button), this.statickeys_2_keysequence);
+        }
+
+        private void sequence_remove_statickeys_2_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxRemoveSelected(this.statickeys_2_keysequence))
+                Global.Configuration.staticKeys_2 = SequenceToList(this.statickeys_2_keysequence.Items);
+        }
+
+        private void sequence_up_statickeys_2_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedUp(this.statickeys_2_keysequence))
+                Global.Configuration.staticKeys_2 = SequenceToList(this.statickeys_2_keysequence.Items);
+        }
+
+        private void sequence_down_statickeys_2_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListBoxMoveSelectedDown(this.statickeys_2_keysequence))
+                Global.Configuration.staticKeys_2 = SequenceToList(this.statickeys_2_keysequence.Items);
+        }
+
+        ////Flashbang/Burning
 
         private void flashbang_enabled_Checked(object sender, RoutedEventArgs e)
         {
@@ -737,17 +788,33 @@ namespace Logitech_CSGO
                 Global.Configuration.flash_color = MediaColorToDrawingColor(this.flashbang_color_colorpicker.SelectedColor.Value);
         }
 
-        private void preview_enabled_Checked(object sender, RoutedEventArgs e)
+        private void flashbang_peripheral_use_Checked(object sender, RoutedEventArgs e)
         {
-            Global.geh.SetPreview((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
-            Global.geh.SetForcedUpdate((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
+            Global.Configuration.flashbang_peripheral_use = (this.flashbang_peripheral_use.IsChecked.HasValue) ? this.flashbang_peripheral_use.IsChecked.Value : false;
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        private void burning_enabled_Checked(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-            e.Handled = true;
+            Global.Configuration.burning_enabled = (this.burning_enabled.IsChecked.HasValue) ? this.burning_enabled.IsChecked.Value : false;
         }
+
+        private void burning_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            if (this.burning_color_colorpicker.SelectedColor.HasValue)
+                Global.Configuration.burning_color = MediaColorToDrawingColor(this.burning_color_colorpicker.SelectedColor.Value);
+        }
+
+        private void burning_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.burning_peripheral_use = (this.burning_peripheral_use.IsChecked.HasValue) ? this.burning_peripheral_use.IsChecked.Value : false;
+        }
+
+        private void burning_animation_Checked(object sender, RoutedEventArgs e)
+        {
+            Global.Configuration.burning_animation = (this.burning_animation.IsChecked.HasValue) ? this.burning_animation.IsChecked.Value : false;
+        }
+
+        ////Typing Keys
 
         private void typing_enabled_Checked(object sender, RoutedEventArgs e)
         {
@@ -783,51 +850,40 @@ namespace Logitech_CSGO
                 Global.Configuration.typingKeys = SequenceToList(this.typingkeys_keysequence.Items);
         }
 
-        private void ambient_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        ////Misc
+
+        private void virtualkeyboard_key_selected(TextBlock key)
         {
-            if (this.ambient_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.ambient_color = MediaColorToDrawingColor(this.ambient_colorpicker.SelectedColor.Value);
+            if (recordingKeystrokes != KeyboardRecordingType.None && key.Tag is Devices.DeviceKeys)
+            {
+                if (recordedKeys.Contains((Devices.DeviceKeys)(key.Tag)))
+                    recordedKeys.Remove((Devices.DeviceKeys)(key.Tag));
+                else
+                    recordedKeys.Add((Devices.DeviceKeys)(key.Tag));
+                last_selected_key = key;
+            }
         }
 
-        private void preview_typing_enabled_Checked(object sender, RoutedEventArgs e)
+        private void keyboard_grid_pressed(object sender, MouseButtonEventArgs e)
         {
-            Global.geh.SetPlayerActivity((((this.preview_typing_enabled.IsChecked.HasValue) ? this.preview_typing_enabled.IsChecked.Value : false) ? CSGSI.Nodes.PlayerActivity.TextInput : CSGSI.Nodes.PlayerActivity.Undefined));
+            if(sender is TextBlock)
+            {
+                virtualkeyboard_key_selected(sender as TextBlock);
+            }
         }
 
-        private void background_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        private void keyboard_grid_moved(object sender, MouseEventArgs e)
         {
-            Global.Configuration.bg_peripheral_use = (this.background_peripheral_use.IsChecked.HasValue) ? this.background_peripheral_use.IsChecked.Value : false;
+            if (e.LeftButton == MouseButtonState.Pressed && sender is TextBlock && last_selected_key != sender as TextBlock)
+            {
+                virtualkeyboard_key_selected(sender as TextBlock);
+            }
         }
 
-        private void bomb_peripheral_use_Checked(object sender, RoutedEventArgs e)
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            Global.Configuration.bomb_peripheral_use = (this.bomb_peripheral_use.IsChecked.HasValue) ? this.bomb_peripheral_use.IsChecked.Value : false;
-        }
-
-        private void flashbang_peripheral_use_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.flashbang_peripheral_use = (this.flashbang_peripheral_use.IsChecked.HasValue) ? this.flashbang_peripheral_use.IsChecked.Value : false;
-        }
-
-        private void burning_enabled_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.burning_enabled = (this.burning_enabled.IsChecked.HasValue) ? this.burning_enabled.IsChecked.Value : false;
-        }
-
-        private void burning_color_colorpicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-        {
-            if (this.burning_color_colorpicker.SelectedColor.HasValue)
-                Global.Configuration.burning_color = MediaColorToDrawingColor(this.burning_color_colorpicker.SelectedColor.Value);
-        }
-
-        private void burning_peripheral_use_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.burning_peripheral_use = (this.burning_peripheral_use.IsChecked.HasValue) ? this.burning_peripheral_use.IsChecked.Value : false;
-        }
-
-        private void burning_animation_Checked(object sender, RoutedEventArgs e)
-        {
-            Global.Configuration.burning_animation = (this.burning_animation.IsChecked.HasValue) ? this.burning_animation.IsChecked.Value : false;
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
 
         private void trayicon_menu_quit_Click(object sender, RoutedEventArgs e)
@@ -864,6 +920,8 @@ namespace Logitech_CSGO
                 shownHiddenMessage = true;
             }
 
+            Global.geh.SetPreview(false);
+
             //Hide Window
             Application.Current.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Background, (System.Windows.Threading.DispatcherOperationCallback)delegate(object o)
             {
@@ -877,6 +935,7 @@ namespace Logitech_CSGO
 
         private void Window_Activated(object sender, EventArgs e)
         {
+            Global.geh.SetPreview((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
             Global.geh.SetForcedUpdate((this.preview_enabled.IsChecked.HasValue) ? this.preview_enabled.IsChecked.Value : false);
         }
 

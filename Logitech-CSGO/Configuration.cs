@@ -56,6 +56,8 @@ namespace Logitech_CSGO
             statickeys_enabled = true;
             statickeys_color = Color.FromArgb(255, 220, 0);
             staticKeys = new List<Devices.DeviceKeys>() { Devices.DeviceKeys.W, Devices.DeviceKeys.A, Devices.DeviceKeys.S, Devices.DeviceKeys.D, Devices.DeviceKeys.LEFT_SHIFT, Devices.DeviceKeys.LEFT_CONTROL, Devices.DeviceKeys.SPACE };
+            statickeys_2_color = Color.FromArgb(255, 0, 255);
+            staticKeys_2 = new List<Devices.DeviceKeys>();
 
             //// Burning
             burning_enabled = true;
@@ -79,7 +81,6 @@ namespace Logitech_CSGO
                                                     Devices.DeviceKeys.ARROW_UP, Devices.DeviceKeys.ARROW_LEFT, Devices.DeviceKeys.ARROW_DOWN, Devices.DeviceKeys.ARROW_RIGHT, Devices.DeviceKeys.ESC
                                                   };
         }
-
         //Effects
         //// Background
         public bool bg_team_enabled;
@@ -115,6 +116,8 @@ namespace Logitech_CSGO
         public bool statickeys_enabled;
         public Color statickeys_color;
         public List<Devices.DeviceKeys> staticKeys { get; set; }
+        public Color statickeys_2_color;
+        public List<Devices.DeviceKeys> staticKeys_2 { get; set; }
 
         //// Burning
         public bool burning_enabled;

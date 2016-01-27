@@ -14,6 +14,8 @@ namespace Logitech_CSGO
     {
         private bool isInitialized = false;
 
+        private int lastUpdate = 0;
+        private int updateRate = 1; //1 second
         private bool isForced = false;
         private static Dictionary<Devices.DeviceKeys, Color> keyColors = new Dictionary<Devices.DeviceKeys, Color>();
         private static Dictionary<Devices.DeviceKeys, Color> final_keyColors = new Dictionary<Devices.DeviceKeys, Color>();
@@ -23,7 +25,7 @@ namespace Logitech_CSGO
         private bool keyboard_updated = false;
         private Timer update_timer;
 
-        private Stopwatch animations_time = Stopwatch.StartNew();
+        private Stopwatch general_timer = Stopwatch.StartNew();
         private Random randomizer = new Random();
 
         //Bomb stuff
@@ -74,7 +76,7 @@ namespace Logitech_CSGO
                 update_timer.Interval = 10; // in miliseconds
                 update_timer.Start();
 
-                animations_time.Start();
+                general_timer.Start();
             }
 
             return devices_inited;
@@ -338,12 +340,15 @@ namespace Logitech_CSGO
                 }
             }
 
-            //Restore Saved Keys
+            //Restore Static Keys
             if (Global.Configuration.statickeys_enabled)
             {
                 Devices.DeviceKeys[] _statickeys = Global.Configuration.staticKeys.ToArray();
                 foreach (Devices.DeviceKeys key in _statickeys)
                     SetOneKey(key, Global.Configuration.statickeys_color);
+                Devices.DeviceKeys[] _statickeys_2 = Global.Configuration.staticKeys_2.ToArray();
+                foreach (Devices.DeviceKeys key in _statickeys_2)
+                    SetOneKey(key, Global.Configuration.statickeys_2_color);
             }
 
             //Update Burning
@@ -354,7 +359,17 @@ namespace Logitech_CSGO
 
                 if (Global.Configuration.burning_animation)
                 {
-                    int green_adjusted = (int)(Global.Configuration.burning_color.G + (Math.Cos((animations_time.ElapsedMilliseconds + randomizer.Next(150)) / 75.0) * 0.15 * 255));
+                    int red_adjusted = (int)(Global.Configuration.burning_color.R + (Math.Cos((general_timer.ElapsedMilliseconds + randomizer.Next(75)) / 75.0) * 0.15 * 255));
+                    byte red = 0;
+
+                    if (red_adjusted > 255)
+                        red = 255;
+                    else if (red_adjusted < 0)
+                        red = 0;
+                    else
+                        red = (byte)red_adjusted;
+
+                    int green_adjusted = (int)(Global.Configuration.burning_color.G + (Math.Sin((general_timer.ElapsedMilliseconds + randomizer.Next(150)) / 75.0) * 0.15 * 255));
                     byte green = 0;
 
                     if(green_adjusted > 255)
@@ -364,7 +379,17 @@ namespace Logitech_CSGO
                     else 
                         green = (byte)green_adjusted;
 
-                    burncolor = Color.FromArgb(burncolor.R, green, burncolor.B);
+                    int blue_adjusted = (int)(Global.Configuration.burning_color.B + (Math.Cos((general_timer.ElapsedMilliseconds + randomizer.Next(225)) / 75.0) * 0.15 * 255));
+                    byte blue = 0;
+
+                    if (blue_adjusted > 255)
+                        blue = 255;
+                    else if (blue_adjusted < 0)
+                        blue = 0;
+                    else
+                        blue = (byte)blue_adjusted;
+
+                    burncolor = Color.FromArgb(red, green, blue);
                 }
 
                 SetAllKeysEffect(burncolor, burning_percent);
@@ -389,6 +414,12 @@ namespace Logitech_CSGO
                 Devices.DeviceKeys[] _typingkeys = Global.Configuration.typingKeys.ToArray();
                 foreach (Devices.DeviceKeys key in _typingkeys)
                     SetOneKey(key, Global.Configuration.typing_color);
+            }
+
+            if (general_timer.Elapsed.Seconds % this.updateRate == 0 && (general_timer.Elapsed.Seconds != this.lastUpdate))
+            {
+                this.isForced = true;
+                this.lastUpdate = general_timer.Elapsed.Seconds;
             }
 
             keyboard_updated = dev_manager.UpdateDevices(keyColors, this.isForced);
