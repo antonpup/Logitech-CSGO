@@ -1,3 +1,6 @@
+# This project has moved
+##Please note that this version of the project is no longer being updated, as it was combined into a utility with support for more games and hardware. Please visit the [Project Aurora](https://github.com/antonpup/Aurora) page for the up-to-date version of this utility. Thank you.
+
 # Logitech - CSGO game integration
 This project enables game interaction between Logitech RGB keyboards, such as [Logitech G910](http://gaming.logitech.com/en-us/product/rgb-gaming-keyboard-g910) or [Logitech G410](http://gaming.logitech.com/en-us/product/rgb-tenkeyless-gaming-keyboard-g410), and [Counter-Strike: Global Offensive](http://store.steampowered.com/app/730/) via [Game Integration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration). Please keep in mind that this is still in development, there may be bugs and there will be new features added.
 
